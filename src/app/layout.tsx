@@ -8,9 +8,13 @@ import Theme from '../components/Theme/Theme';
 
 const manrope = Manrope({ subsets: ['latin'] });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={manrope.className}>
         <Theme>
           <Header />
