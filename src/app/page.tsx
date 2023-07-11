@@ -1,10 +1,7 @@
-import Header from "@/components/Nav/Header";
-
-export default function Home() {
+export default function Landing() {
   return (
     <div>
-      <Header />
-      <h1>Home Page</h1>
+      <h1>Landing Page</h1>
     </div>
   );
 }

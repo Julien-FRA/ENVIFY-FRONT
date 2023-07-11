@@ -4,7 +4,8 @@ import PrimaryPutton from "../Button/Primary.button";
 const Header = () => {
   return (
     <nav>
-      <PrimaryPutton href={"/"}>Home</PrimaryPutton>
+      <PrimaryPutton href={"/"}>Landing</PrimaryPutton>
+      <PrimaryPutton href={"/home"}>Home</PrimaryPutton>
       <PrimaryPutton href={"/login"}>Login</PrimaryPutton>
       <PrimaryPutton href={"/register"}>Register</PrimaryPutton>
     </nav>
