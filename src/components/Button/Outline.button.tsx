@@ -3,12 +3,12 @@ import { Button } from "@mantine/core";
 import Link from "next/link";
 import React from "react";
 
-function PrimaryPutton({ href, children }: LinkProps) {
+function OutlineButton({ href, children }: LinkProps) {
   return (
-    <Button color="violet" c="white.3">
+    <Button variant="outline" color="violet">
       <Link href={href}>{children}</Link>
     </Button>
   );
 }
 
-export default PrimaryPutton;
+export default OutlineButton;
