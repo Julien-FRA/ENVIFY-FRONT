@@ -1,17 +1,29 @@
 import React from "react";
 import PrimaryPutton from "../Button/Primary.button";
 import OutlineButton from "../Button/Outline.button";
-import ArrowButton from "../Button/Arrow.button";
+import LogoButton from "../Button/Logo.button";
+import styled from "@emotion/styled";
+import TextButton from "../Button/Text.button";
+
+const NavHorizontal = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  border-bottom: 1px solid #353535;
+  padding: 1.5rem;
+`;
 
 const HeaderHorizontal = () => {
   return (
-    <nav>
-      <OutlineButton href={"/"}>Landing</OutlineButton>
-      <PrimaryPutton href={"/home"}>Home</PrimaryPutton>
-      <PrimaryPutton href={"/login"}>Login</PrimaryPutton>
-      <PrimaryPutton href={"/register"}>Register</PrimaryPutton>
-      <ArrowButton href={""}>Arrow button</ArrowButton>
-    </nav>
+    <NavHorizontal>
+      <LogoButton href={"/"} children={undefined} />
+      <div>
+        <OutlineButton href={"/login"}>Login</OutlineButton>
+        <PrimaryPutton href={"/register"}>Register</PrimaryPutton>
+      </div>
+    </NavHorizontal>
   );
 };
 

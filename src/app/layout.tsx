@@ -1,5 +1,13 @@
 "use client";
 import { Inter } from "next/font/google";
+import styled from "@emotion/styled";
+
+const BodyCustom = styled.body`
+  background-color: #171717;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+`;
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <BodyCustom className={inter.className}>{children}</BodyCustom>
     </html>
   );
 }
