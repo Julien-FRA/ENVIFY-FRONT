@@ -3,7 +3,6 @@ import PrimaryPutton from "../Button/Primary.button";
 import OutlineButton from "../Button/Outline.button";
 import LogoButton from "../Button/Logo.button";
 import styled from "@emotion/styled";
-import TextButton from "../Button/Text.button";
 
 const NavHorizontal = styled.nav`
   display: flex;
