@@ -4,11 +4,10 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const LinkCustom = styled(Link)`
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-size: 14px;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 `;
 
 function TextButton({ href, children }: LinkProps) {

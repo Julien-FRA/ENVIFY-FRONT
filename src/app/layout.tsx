@@ -24,7 +24,6 @@ export default function RootLayout({
       <BodyCustom className={manrope.className}>
         <Theme>
           <main>{children}</main>
-          <Button>Validate</Button>
         </Theme>
       </BodyCustom>
     </html>

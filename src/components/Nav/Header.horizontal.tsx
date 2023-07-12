@@ -1,4 +1,5 @@
 import React from "react";
+import { GiHexagonalNut } from "react-icons/gi";
 import PrimaryPutton from "../Button/Primary.button";
 import OutlineButton from "../Button/Outline.button";
 import LogoButton from "../Button/Logo.button";
@@ -17,7 +18,7 @@ const NavHorizontal = styled.nav`
 const HeaderHorizontal = () => {
   return (
     <NavHorizontal>
-      <LogoButton href={"/"} children={undefined} />
+      <LogoButton href={"/"}>{<GiHexagonalNut />}</LogoButton>
       <div>
         <OutlineButton href={"/login"}>Login</OutlineButton>
         <PrimaryPutton href={"/register"}>Register</PrimaryPutton>

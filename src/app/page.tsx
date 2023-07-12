@@ -2,7 +2,8 @@
 import ArrowButton from "@/components/Button/Arrow.button";
 import PrimaryPutton from "@/components/Button/Primary.button";
 import HeaderHorizontal from "@/components/Nav/Header.horizontal";
-import { Text } from "@mantine/core";
+import { Box, Text, Title } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 import styled from "@emotion/styled";
 
 const MainCustom = styled.main`
@@ -10,25 +11,38 @@ const MainCustom = styled.main`
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-top: 2rem;
+  margin: 2rem auto;
+  max-width: 875px;
 `;
 
 export default function Landing() {
+  const smallScreen = useMediaQuery("(max-width: 860px)");
+
   return (
     <>
       <HeaderHorizontal />
       <MainCustom>
-        <Text size="xl" mx="auto" my="1rem" ta="center">
+        <Title
+          order={1}
+          size={smallScreen ? "32px" : "64px"}
+          mx="0.5rem"
+          my="1rem"
+          ta="center"
+        >
           Simplify your virtual machineconfiguration effortlessly
-        </Text>
-        <Text size="sm" mx="auto" my="1rem" ta="center">
+        </Title>
+        <Text size="md" mx="0.5rem" my="1rem" ta="center">
           Focus on what matters the most, save time and configure your virtual
           machine in few clicks. You choose, we provide all you need
         </Text>
-        <PrimaryPutton href={"/register"}>Get started</PrimaryPutton>
-        <ArrowButton href={"/community"}>
-          See community configuration
-        </ArrowButton>
+        <Box my="1rem">
+          <PrimaryPutton href={"/register"}>Get started</PrimaryPutton>
+        </Box>
+        <Box my="1rem">
+          <ArrowButton href={"/community"}>
+            See community configuration
+          </ArrowButton>
+        </Box>
       </MainCustom>
     </>
   );

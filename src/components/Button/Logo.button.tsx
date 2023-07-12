@@ -1,5 +1,4 @@
 import { LinkProps } from "@/utils/types/component.type";
-import { GiHexagonalNut } from "react-icons/gi";
 import Link from "next/link";
 import React from "react";
 import styled from "@emotion/styled";
@@ -9,9 +8,8 @@ const LinkCustom = styled(Link)`
   height: 35px;
   display: inline-block;
   color: white;
-  margin-left: 1rem;
-  margin-left: 1rem;
-
+  margin-left: 0.5rem;
+  margin-left: 0.5rem;
 
   & svg {
     width: 35px;
@@ -19,8 +17,8 @@ const LinkCustom = styled(Link)`
   }
 `;
 
-function LogoButton({ href }: LinkProps) {
-  return <LinkCustom href={href}>{<GiHexagonalNut />}</LinkCustom>;
+function LogoButton({ href, children }: LinkProps) {
+  return <LinkCustom href={href}>{children}</LinkCustom>;
 }
 
 export default LogoButton;

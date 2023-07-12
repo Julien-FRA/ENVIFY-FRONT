@@ -5,14 +5,13 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const LinkCustom = styled(Link)`
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-size: 14px;
 `;
 
-function PrimaryPutton({ href, children }: LinkProps) {
+function PrimaryPutton({ href, children}: LinkProps) {
   return (
-    <Button color="violet" mx="1rem">
+    <Button color="violet" mx="0.5rem">
       <LinkCustom href={href}>{children}</LinkCustom>
     </Button>
   );

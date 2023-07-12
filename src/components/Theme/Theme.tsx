@@ -1,5 +1,9 @@
 import React from "react";
-import { MantineProvider, ButtonStylesParams } from "@mantine/core";
+import {
+  MantineProvider,
+  ButtonStylesParams,
+  TitleStylesParams,
+} from "@mantine/core";
 
 export default function Theme({ children }: { children: React.ReactNode }) {
   return (
@@ -26,9 +30,13 @@ export default function Theme({ children }: { children: React.ReactNode }) {
                   variant === "filled"
                     ? theme.colors[params.color || theme.primaryColor][0]
                     : undefined,
-                border: `2px solid ${
-                  theme.colors[params.color || theme.primaryColor][2]
-                }`,
+                border:
+                  variant === "outline"
+                    ? `1px solid ${
+                        theme.colors[params.color || theme.primaryColor][2]
+                      }`
+                    : undefined,
+                color: theme.colors[theme.white],
               },
             }),
           },
