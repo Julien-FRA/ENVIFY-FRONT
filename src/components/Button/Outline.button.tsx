@@ -11,7 +11,7 @@ const LinkCustom = styled(Link)`
 
 function OutlineButton({ href, children }: LinkProps) {
   return (
-    <Button variant="outline" color="violet" mx="0.5rem">
+    <Button variant="outline" color="violet">
       <LinkCustom href={href}>{children}</LinkCustom>
     </Button>
   );

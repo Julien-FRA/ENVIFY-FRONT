@@ -4,6 +4,7 @@ import PrimaryPutton from "../Button/Primary.button";
 import OutlineButton from "../Button/Outline.button";
 import LogoButton from "../Button/Logo.button";
 import styled from "@emotion/styled";
+import { Box } from "@mantine/core";
 
 const NavHorizontal = styled.nav`
   display: flex;
@@ -19,10 +20,12 @@ const HeaderHorizontal = () => {
   return (
     <NavHorizontal>
       <LogoButton href={"/"}>{<GiHexagonalNut />}</LogoButton>
-      <div>
-        <OutlineButton href={"/login"}>Login</OutlineButton>
+      <Box display="flex">
+        <Box mr="1rem">
+          <OutlineButton href={"/login"}>Login</OutlineButton>
+        </Box>
         <PrimaryPutton href={"/register"}>Register</PrimaryPutton>
-      </div>
+      </Box>
     </NavHorizontal>
   );
 };

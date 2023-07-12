@@ -8,8 +8,6 @@ const LinkCustom = styled(Link)`
   height: 35px;
   display: inline-block;
   color: white;
-  margin-left: 0.5rem;
-  margin-left: 0.5rem;
 
   & svg {
     width: 35px;

@@ -6,7 +6,7 @@ import { Box, Text, Title } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import styled from "@emotion/styled";
 
-const MainCustom = styled.main`
+const DivCustom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,12 +16,12 @@ const MainCustom = styled.main`
 `;
 
 export default function Landing() {
-  const smallScreen = useMediaQuery("(max-width: 860px)");
+  const smallScreen = useMediaQuery("(max-width: 768px)");
 
   return (
     <>
       <HeaderHorizontal />
-      <MainCustom>
+      <DivCustom>
         <Title
           order={1}
           size={smallScreen ? "32px" : "64px"}
@@ -43,7 +43,7 @@ export default function Landing() {
             See community configuration
           </ArrowButton>
         </Box>
-      </MainCustom>
+      </DivCustom>
     </>
   );
 }

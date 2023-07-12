@@ -6,8 +6,6 @@ import styled from "@emotion/styled";
 const LinkCustom = styled(Link)`
   color: #fff;
   text-decoration: none;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
 `;
 
 function TextButton({ href, children }: LinkProps) {
