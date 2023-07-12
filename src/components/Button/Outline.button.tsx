@@ -9,12 +9,12 @@ const LinkCustom = styled(Link)`
   text-decoration: none;
 `;
 
-function PrimaryPutton({ href, children }: LinkProps) {
+function OutlineButton({ href, children }: LinkProps) {
   return (
-    <Button color="violet">
+    <Button variant="outline" color="violet">
       <LinkCustom href={href}>{children}</LinkCustom>
     </Button>
   );
 }
 
-export default PrimaryPutton;
+export default OutlineButton;

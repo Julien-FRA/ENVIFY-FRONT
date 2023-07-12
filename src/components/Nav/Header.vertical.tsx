@@ -1,15 +1,18 @@
 import React from "react";
 import PrimaryPutton from "../Button/Primary.button";
+import OutlineButton from "../Button/Outline.button";
+import ArrowButton from "../Button/Arrow.button";
 
-const Header = () => {
+const HeaderVertical = () => {
   return (
     <nav>
-      <PrimaryPutton href={"/"}>Landing</PrimaryPutton>
+      <OutlineButton href={"/"}>Landing</OutlineButton>
       <PrimaryPutton href={"/home"}>Home</PrimaryPutton>
       <PrimaryPutton href={"/login"}>Login</PrimaryPutton>
       <PrimaryPutton href={"/register"}>Register</PrimaryPutton>
+      <ArrowButton href={""}>Arrow button</ArrowButton>
     </nav>
   );
 };
 
-export default Header;
+export default HeaderVertical;

@@ -1,12 +1,18 @@
-'use client';
-import Header from '@/components/Nav/Header';
-import './globals.css';
-import { Manrope } from 'next/font/google';
-import React from 'react';
-import { Button } from '@mantine/core';
-import Theme from '../components/Theme/Theme';
+"use client";
+import { Manrope } from "next/font/google";
+import React from "react";
+import { Button } from "@mantine/core";
+import Theme from "../components/Theme/Theme";
+import styled from "@emotion/styled";
 
-const manrope = Manrope({ subsets: ['latin'] });
+const manrope = Manrope({ subsets: ["latin"] });
+
+const BodyCustom = styled.body`
+  background-color: #171717;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+`;
 
 export default function RootLayout({
   children,
@@ -15,13 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={manrope.className}>
+      <BodyCustom className={manrope.className}>
         <Theme>
-          <Header />
           <main>{children}</main>
-          <Button>Validate</Button>
         </Theme>
-      </body>
+      </BodyCustom>
     </html>
   );
 }
