@@ -1,0 +1,54 @@
+name: CI - Front
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+
+concurrency:
+  group: ci-front-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test Admin
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --max_old_space_size=4096
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Use NodeJS 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+          cache: "yarn"
+          cache-dependency-path: front/yarn.lock
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint Cache
+        uses: actions/cache@v3
+        id: eslint-cache
+        with:
+          path: front/.cache/eslint
+          key: ${{ runner.os }}-eslint
+
+      - name: Code analysis (ESLint) and style-guide analysis (Prettier)
+        run: npm run test:lint
+
+      - name: Typings Analysis (Typescript)
+        run: npm run test:types
+
+      - name: Jest Cache
+        uses: actions/cache@v3
+        id: jest-cache
+        with:
+          path: front/.cache/jest
+          key: ${{ runner.os }}-jest
+
+      - name: Unit Tests Analysis (Jest)
+        run: npm run test:unit

@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch"
+    "test:types": "tsc --noEmit",
+    "test:lint": "eslint . --cache --cache-location .cache/eslint",
+    "test:unit": "jest --collectCoverage --"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
