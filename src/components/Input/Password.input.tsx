@@ -1,7 +1,7 @@
-"use client";
-import React from "react";
-import { PasswordInput } from "@mantine/core";
-import { InputTextProps } from "@/utils/types/component.type";
+'use client';
+import React from 'react';
+import { PasswordInput } from '@mantine/core';
+import { InputTextProps } from '@/utils/types/component.type';
 
 function InputPassword({
   placeholder,

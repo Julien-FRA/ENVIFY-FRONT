@@ -1,5 +1,5 @@
-"use client";
-import HeaderVertical from "@/components/Nav/Header.vertical";
+'use client';
+import HeaderVertical from '@/components/Nav/Header.vertical';
 
 export default function RootLayout({
   children,

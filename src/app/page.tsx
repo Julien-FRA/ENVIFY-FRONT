@@ -1,10 +1,10 @@
-"use client";
-import ArrowButton from "@/components/Button/Arrow.button";
-import PrimaryPutton from "@/components/Button/Primary.button";
-import HeaderHorizontal from "@/components/Nav/Header.horizontal";
-import { Box, Text, Title } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
-import styled from "@emotion/styled";
+'use client';
+import ArrowButton from '@/components/Button/Arrow.button';
+import PrimaryPutton from '@/components/Button/Primary.button';
+import HeaderHorizontal from '@/components/Nav/Header.horizontal';
+import { Box, Text, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import styled from '@emotion/styled';
 
 const DivCustom = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ const DivCustom = styled.div`
 `;
 
 export default function Landing() {
-  const smallScreen = useMediaQuery("(max-width: 768px)");
+  const smallScreen = useMediaQuery('(max-width: 768px)');
 
   return (
     <>
@@ -24,7 +24,7 @@ export default function Landing() {
       <DivCustom>
         <Title
           order={1}
-          size={smallScreen ? "32px" : "64px"}
+          size={smallScreen ? '32px' : '64px'}
           mx="0.5rem"
           my="1rem"
           ta="center"
@@ -36,10 +36,10 @@ export default function Landing() {
           machine in few clicks. You choose, we provide all you need
         </Text>
         <Box my="1rem">
-          <PrimaryPutton href={"/register"}>Get started</PrimaryPutton>
+          <PrimaryPutton href={'/register'}>Get started</PrimaryPutton>
         </Box>
         <Box my="1rem">
-          <ArrowButton href={"/community"}>
+          <ArrowButton href={'/community'}>
             See community configuration
           </ArrowButton>
         </Box>

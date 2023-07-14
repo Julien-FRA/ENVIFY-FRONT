@@ -1,5 +1,5 @@
-require("@testing-library/jest-dom");
+require('@testing-library/jest-dom');
 
-describe("Test jest", () => {
-  it("Jest running", () => {});
+describe('Test jest', () => {
+  it('Jest running', () => {});
 });

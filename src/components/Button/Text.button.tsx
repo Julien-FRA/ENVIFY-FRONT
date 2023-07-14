@@ -1,7 +1,7 @@
-import { LinkProps } from "@/utils/types/component.type";
-import Link from "next/link";
-import React from "react";
-import styled from "@emotion/styled";
+import { LinkProps } from '@/utils/types/component.type';
+import Link from 'next/link';
+import React from 'react';
+import styled from '@emotion/styled';
 
 const LinkCustom = styled(Link)`
   color: #fff;

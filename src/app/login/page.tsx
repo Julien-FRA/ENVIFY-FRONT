@@ -1,11 +1,11 @@
-"use client";
-import InputPassword from "@/components/Input/Password.input";
-import InputText from "@/components/Input/Text.input";
-import HeaderHorizontal from "@/components/Nav/Header.horizontal";
-import { Box, Text, Title } from "@mantine/core";
-import styled from "@emotion/styled";
-import { useMediaQuery } from "@mantine/hooks";
-import PrimaryPutton from "@/components/Button/Primary.button";
+'use client';
+import InputPassword from '@/components/Input/Password.input';
+import InputText from '@/components/Input/Text.input';
+import HeaderHorizontal from '@/components/Nav/Header.horizontal';
+import { Box, Text, Title } from '@mantine/core';
+import styled from '@emotion/styled';
+import { useMediaQuery } from '@mantine/hooks';
+import PrimaryPutton from '@/components/Button/Primary.button';
 
 const DivCustom = styled.div`
   max-width: 475px;
@@ -14,20 +14,20 @@ const DivCustom = styled.div`
 `;
 
 export default function Login() {
-  const smallScreen = useMediaQuery("(max-width: 768px)");
+  const smallScreen = useMediaQuery('(max-width: 768px)');
 
   return (
     <>
       <HeaderHorizontal />
       <DivCustom>
-        <Title order={1} size={smallScreen ? "26px" : "32px"} mb="0.5rem">
+        <Title order={1} size={smallScreen ? '26px' : '32px'} mb="0.5rem">
           Welcome back
         </Title>
         <Text size="md" mb="2rem">
           Sign in to your account
         </Text>
         <Box mb="0.75rem">
-          {" "}
+          {' '}
           <InputText
             placeholder="Your email"
             label="Email"
@@ -42,7 +42,7 @@ export default function Login() {
           required={true}
         />
         <Box mt="2rem">
-          <PrimaryPutton href={"/"}>Sign in</PrimaryPutton>
+          <PrimaryPutton href={'/'}>Sign in</PrimaryPutton>
         </Box>
       </DivCustom>
     </>

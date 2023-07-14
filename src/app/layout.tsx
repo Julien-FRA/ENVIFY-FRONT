@@ -1,11 +1,10 @@
-"use client";
-import { Manrope } from "next/font/google";
-import React from "react";
-import { Button } from "@mantine/core";
-import Theme from "../components/Theme/Theme";
-import styled from "@emotion/styled";
+'use client';
+import { Manrope } from 'next/font/google';
+import React from 'react';
+import Theme from '../components/Theme/Theme';
+import styled from '@emotion/styled';
 
-const manrope = Manrope({ subsets: ["latin"] });
+const manrope = Manrope({ subsets: ['latin'] });
 
 const BodyCustom = styled.body`
   background-color: #171717;
