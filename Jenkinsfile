@@ -3,10 +3,9 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
-    def mvn = tool 'Default Maven';
+    def scannerHome = tool 'SonarQubeScanner';
     withSonarQubeEnv() {
-      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=envify-front -Dsonar.projectName='envify-front'"
+      sh "${scannerHome}/bin/sonar-scanner"
     }
-
   }
 }
