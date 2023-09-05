@@ -1,4 +1,7 @@
 node {
+  tools {
+    jdk "jdk904"
+  }
   stage('SCM') {
     checkout scm
   }
