@@ -3,6 +3,8 @@ import React from 'react';
 import { useForm } from '@mantine/form';
 import { Box, Button, Container, Text, TextInput, Title } from '@mantine/core';
 import { PasswordInput } from '@/components/Input/password/Password.input';
+import { ButtonPrimary } from '@/components/Button/Button';
+import { BsArrowLeft } from 'react-icons/bs';
 
 export const LoginForm = () => {
   const form = useForm<{ email: string; password: string }>({
@@ -22,35 +24,42 @@ export const LoginForm = () => {
   });
 
   return (
-    <Container size="xs" p={1} my={32}>
-      <Title order={1} size={'32px'} mb="0.5rem">
-        Welcome back
-      </Title>
-      <Text size="md" mb="2rem">
-        Sign in to your account
-      </Text>
+    <>
+      <Box mt={'1rem'} ml={'1rem'}>
+        <ButtonPrimary href={'/'}>
+          <BsArrowLeft />
+        </ButtonPrimary>
+      </Box>
+      <Container size="xs" p={1} my={32}>
+        <Title order={1} size={'32px'} mb="0.5rem">
+          Welcome back
+        </Title>
+        <Text size="md" mb="2rem">
+          Sign in to your account
+        </Text>
 
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
-        <Box mb="0.75rem">
-          <TextInput
-            placeholder="Your email"
-            label="Email"
-            description={undefined}
+        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+          <Box mb="0.75rem">
+            <TextInput
+              placeholder="Your email"
+              label="Email"
+              description={undefined}
+              required={true}
+              {...form.getInputProps('email')}
+            />
+          </Box>
+          <PasswordInput
+            placeholder="Your password"
+            label="Password"
+            description="Password must include at least one letter, number and special character"
             required={true}
-            {...form.getInputProps('email')}
+            {...form.getInputProps('password')}
           />
-        </Box>
-        <PasswordInput
-          placeholder="Your password"
-          label="Password"
-          description="Password must include at least one letter, number and special character"
-          required={true}
-          {...form.getInputProps('password')}
-        />
-        <Button type="submit" mt="2rem">
-          Sign in
-        </Button>
-      </form>
-    </Container>
+          <Button type="submit" mt="2rem">
+            Sign in
+          </Button>
+        </form>
+      </Container>
+    </>
   );
 };
