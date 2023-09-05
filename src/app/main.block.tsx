@@ -1,12 +1,12 @@
 'use client';
 import { ButtonArrow, ButtonPrimary } from '@/components/Button/Button';
-import { HorizontalNav } from '@/components/Nav/Horizontal.nav';
+import { Header } from '@/components/Nav/Header';
 import { Box, Container, Flex, Text, Title } from '@mantine/core';
 
 export const MainBlock = () => {
   return (
     <>
-      <HorizontalNav />
+      <Header />
       <Container size="md" p={1} mt={32}>
         <Title order={1} size={'64px'} mx="0.5rem" my="1rem" ta="center">
           Simplify your virtual machine configuration effortlessly

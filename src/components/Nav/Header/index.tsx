@@ -2,9 +2,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
-import { ButtonLogo, ButtonPrimary, ButtonSecondary } from '../Button/Button';
+import {
+  ButtonLogo,
+  ButtonPrimary,
+  ButtonSecondary,
+} from '../../Button/Button';
 
-export const HorizontalNav = () => {
+export const Header = () => {
   return (
     <CustomNav>
       <ButtonLogo />
