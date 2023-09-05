@@ -8,10 +8,8 @@ node {
     }
 
     stage('Log') {
-        steps {
-            sh "ls ${jdkHome}/bin"
-            sh "cd ${jdkHome}"
-        }
+        sh "ls ${jdkHome}/bin"
+        sh "cd ${jdkHome}"
     }
 
     stage('SonarQube Analysis') {
