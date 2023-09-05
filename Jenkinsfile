@@ -11,7 +11,7 @@ node {
 
     stage('Log') {
         sh "ls ${jdkHome}/bin"
-        sh "cd ${jdkHome}"
+        //sh "cd ${jdkHome}"
     }
 
     stage('SonarQube Analysis') {
