@@ -1,7 +1,7 @@
 node {
-    def jdkHome = tool 'jdk11'
+    def jdkHome = tool 'jdk904'
     env.JAVA_HOME = jdkHome
-    env.PATH = "${jdkHome}/bin:${env.PATH}"
+    env.PATH = "${jdkHome}/bin"
 
     stage('SCM') {
         checkout scm
