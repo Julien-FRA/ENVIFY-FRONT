@@ -7,5 +7,6 @@ node {
     withSonarQubeEnv() {
       sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=envify-front -Dsonar.projectName='envify-front'"
     }
+
   }
 }
