@@ -1,7 +1,5 @@
+import { RegisterForm } from './Register.form';
+
 export default function Register() {
-  return (
-    <main>
-      <h1>Register Page</h1>
-    </main>
-  );
+  return <RegisterForm />;
 }
