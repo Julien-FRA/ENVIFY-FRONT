@@ -1,8 +1,9 @@
 node {
     def jdkHome = tool 'jdk17'
-    echo "jdkHome var: ${jdkHome}"
-    sh "ls ${jdkHome}"
-    sh "java --version"
+    //echo "jdkHome var: ${jdkHome}"
+    //sh "ls ${jdkHome}"
+    //sh "java --version"
+    sh "export JAVA_HOME=${jdkHome}"
     //env.JAVA_HOME = jdkHome
     //env.PATH = "${jdkHome}/bin"
 
