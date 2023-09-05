@@ -2,8 +2,8 @@ node {
     def jdkHome = tool 'jdk11'
     echo "jdkHome var: ${jdkHome}"
     sh "ls ${jdkHome}"
-    env.JAVA_HOME = jdkHome
-    env.PATH = "${jdkHome}/bin"
+    //env.JAVA_HOME = jdkHome
+    //env.PATH = "${jdkHome}/bin"
 
     stage('SCM') {
         checkout scm
