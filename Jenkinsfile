@@ -1,5 +1,5 @@
 node {
-    def jdkHome = tool 'jdk11'
+    def jdkHome = tool 'jdk17'
     echo "jdkHome var: ${jdkHome}"
     sh "ls ${jdkHome}"
     sh "java --version"
