@@ -1,5 +1,5 @@
 node {
-    def jdkHome = tool 'jdk904'
+    def jdkHome = tool 'jdk11'
     env.JAVA_HOME = jdkHome
     env.PATH = "${jdkHome}/bin"
 
