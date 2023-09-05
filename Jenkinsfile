@@ -1,8 +1,8 @@
 node {
-    tools {
-        jdk "jdk904"
-    }
-    agent any
+    def jdkHome = tool 'jdk904'
+    env.JAVA_HOME = jdkHome
+    env.PATH = "${jdkHome}/bin:${env.PATH}"
+
     stage('SCM') {
         checkout scm
     }
