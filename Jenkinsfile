@@ -1,5 +1,5 @@
 node {
-    // Tests
+    // Test
     stage('SCM') {
         checkout scm
     }
