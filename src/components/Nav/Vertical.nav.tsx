@@ -1,17 +1,13 @@
+import { ButtonPrimary, ButtonSecondary } from '../Button/Button';
 import React from 'react';
-import { Button, ButtonPrimary, ButtonSecondary } from '../Button/Button';
-import { BsArrowRight } from 'react-icons/bs';
 
-export const HeaderVertical = () => {
+export const VerticalNav = () => {
   return (
-    <>
+    <nav>
       <ButtonSecondary href={'/'}>Landing</ButtonSecondary>
       <ButtonPrimary href={'/home'}>Home</ButtonPrimary>
       <ButtonPrimary href={'/login'}>Login</ButtonPrimary>
       <ButtonPrimary href={'/register'}>Register</ButtonPrimary>
-      <Button rightIcon={<BsArrowRight />} href={''}>
-        Arrow button
-      </Button>
-    </>
+    </nav>
   );
 };
