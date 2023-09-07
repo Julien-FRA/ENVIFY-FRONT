@@ -24,6 +24,7 @@
     }
   },
   "include": [
+    ".storybook/*",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

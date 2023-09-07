@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Box } from '@mantine/core';
-import { ButtonLogo, ButtonPrimary, ButtonSecondary } from '../Button/Button';
+import { Button, ButtonLogo } from '../Button/Button';
 
 export const HorizontalNav = () => {
   return (
@@ -10,9 +10,11 @@ export const HorizontalNav = () => {
       <ButtonLogo />
       <Box display="flex">
         <Box mr="1rem">
-          <ButtonSecondary href={'/login'}>Login</ButtonSecondary>
+          <Button outlined href="/login">
+            Login
+          </Button>
         </Box>
-        <ButtonPrimary href={'/register'}>Register</ButtonPrimary>
+        <Button href="/register">Register</Button>
       </Box>
     </CustomNav>
   );

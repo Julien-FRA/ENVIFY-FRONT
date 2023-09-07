@@ -1,5 +1,5 @@
-import RegisterPage from './Register.page';
+import { RegisterContainer } from './Register.container';
 
 export default function Register() {
-  return <RegisterPage />;
+  return <RegisterContainer />;
 }

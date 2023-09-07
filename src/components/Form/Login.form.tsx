@@ -10,9 +10,10 @@ import {
   Title,
   PasswordInput,
 } from '@/components/mantine';
+import { UserDto } from '@/utils/types/user.type';
 
 export const LoginForm = () => {
-  const form = useForm<{ email: string; password: string }>({
+  const form = useForm<UserDto>({
     initialValues: {
       email: '',
       password: '',

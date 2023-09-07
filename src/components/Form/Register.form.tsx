@@ -10,14 +10,14 @@ import {
   Title,
   PasswordInput,
 } from '@/components/mantine';
+import { UserCreateDto } from '@/utils/types/user.type';
 
 export const RegisterForm = () => {
-  const form = useForm<{
-    email: string;
-    password: string;
-    confirmPassword: string;
-  }>({
+  const form = useForm<UserCreateDto>({
     initialValues: {
+      username: '',
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -25,6 +25,12 @@ export const RegisterForm = () => {
     clearInputErrorOnChange: true,
 
     validate: {
+      username: (value) =>
+        value.length >= 1 ? null : 'Username must be at least 1 characters',
+      firstname: (value) =>
+        value.length >= 1 ? null : 'First name must be at least 1 characters',
+      lastname: (value) =>
+        value.length >= 1 ? null : 'Last name must be at least 1 characters',
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
       password: (value) =>
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(value)
@@ -45,6 +51,33 @@ export const RegisterForm = () => {
       </Text>
 
       <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <Box mb="0.75rem">
+          <TextInput
+            placeholder="Your username"
+            label="Username"
+            description={undefined}
+            required={true}
+            {...form.getInputProps('username')}
+          />
+        </Box>
+        <Box mb="0.75rem">
+          <TextInput
+            placeholder="Your first name"
+            label="First name"
+            description={undefined}
+            required={true}
+            {...form.getInputProps('firstname')}
+          />
+        </Box>
+        <Box mb="0.75rem">
+          <TextInput
+            placeholder="Your last name"
+            label="Last name"
+            description={undefined}
+            required={true}
+            {...form.getInputProps('lastname')}
+          />
+        </Box>
         <Box mb="0.75rem">
           <TextInput
             placeholder="Your email"

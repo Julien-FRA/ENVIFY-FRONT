@@ -1,5 +1,5 @@
-import LoginPage from './Login.page';
+import { LoginContainer } from './Login.container';
 
 export default function Login() {
-  return <LoginPage />;
+  return <LoginContainer />;
 }

@@ -1,7 +1,8 @@
 'use client';
-import { ButtonArrow, ButtonPrimary } from '@/components/Button/Button';
+import { Button } from '@/components/Button/Button';
 import { HorizontalNav } from '@/components/Nav/Horizontal.nav';
 import { Box, Container, Flex, Text, Title } from '@mantine/core';
+import { BsArrowRight } from 'react-icons/bs';
 
 export const MainBlock = () => {
   return (
@@ -20,12 +21,12 @@ export const MainBlock = () => {
       </Container>
       <Flex justify="center" align="center" direction="column">
         <Box my="0.5rem">
-          <ButtonPrimary href={'/register'}>Get started</ButtonPrimary>
+          <Button href={'/register'}>Get started</Button>
         </Box>
         <Box my="0.5rem">
-          <ButtonArrow href={'/community'}>
+          <Button outlined rightIcon={<BsArrowRight />} href="/community">
             See community configuration
-          </ButtonArrow>
+          </Button>
         </Box>
       </Flex>
     </>

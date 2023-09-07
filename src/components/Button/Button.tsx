@@ -1,41 +1,32 @@
 import {
   Button as MantineButton,
   ButtonProps as MantineButtonProps,
-} from '@/components/mantine';
+} from '@/components/mantine/index';
 import { GiHexagonalNut } from 'react-icons/gi';
 import Link from 'next/link';
-import { BsArrowRight } from 'react-icons/bs';
 
-type ButtonProps = {
+interface ButtonProps extends MantineButtonProps {
   href?: string;
-} & MantineButtonProps;
+  outlined?: boolean;
+}
 
-export const Button = ({ href, children, ...props }: ButtonProps) => (
-  <>
-    {href ? (
-      <Link href={href}>
-        <MantineButton {...props}>{children}</MantineButton>
-      </Link>
-    ) : (
-      <MantineButton {...props}>{children}</MantineButton>
-    )}
-  </>
-);
-
-export const ButtonPrimary = (props: ButtonProps) => (
-  <Button variant="primary" {...props} />
-);
-
-export const ButtonSecondary = (props: ButtonProps) => (
-  <Button variant="secondary" {...props} />
-);
-
-export const ButtonArrow = (props: ButtonProps) => (
-  <Button variant="arrow" {...props} rightIcon={<BsArrowRight />} />
-);
+export const Button = ({
+  href,
+  variant = 'filled',
+  outlined,
+  children,
+  ...props
+}: ButtonProps) => {
+  const BaseButton = (
+    <MantineButton variant={outlined ? 'outline' : variant} {...props}>
+      {children}
+    </MantineButton>
+  );
+  return <>{href ? <Link href={href}>{BaseButton}</Link> : BaseButton}</>;
+};
 
 export const ButtonLogo = () => (
-  <Button href={'/'}>
+  <Button href="/">
     <GiHexagonalNut color="white" />
   </Button>
 );
