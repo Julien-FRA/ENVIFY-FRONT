@@ -20,6 +20,15 @@ pipeline {
                 sh 'npm run test:unit'
             }
         }
+        stage('Logs') {
+            steps {
+                script {
+                    echo "Jenkins Pipeline Details :"
+                    def consoleLog = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER)).logFile.text
+                    echo "${consoleLog}"
+                }
+            }
+        }
     }
 }
 
