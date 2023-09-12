@@ -1,15 +1,14 @@
 'use client';
-import React from 'react';
 import { useForm } from '@mantine/form';
 import {
   Box,
   Button,
-  Container,
   Text,
   TextInput,
   Title,
   PasswordInput,
-} from '@/components/mantine';
+  Group,
+} from '@mantine/core';
 import { UserCreateDto } from '@/utils/types/user.type';
 
 export const RegisterForm = () => {
@@ -42,16 +41,16 @@ export const RegisterForm = () => {
   });
 
   return (
-    <Container size="sm" p={'2rem'} my={'2rem'}>
-      <Title order={1} size={'2.5rem'} mb={'0.5rem'}>
+    <Box>
+      <Title order={1} size={40} mb={8}>
         Get Started
       </Title>
-      <Text size="md" mb={'2rem'}>
+      <Text size="md" mb={32}>
         Create a new account
       </Text>
 
       <form onSubmit={form.onSubmit((values) => console.log(values))}>
-        <Box mb="0.75rem">
+        <Box mb={12}>
           <TextInput
             placeholder="Your username"
             label="Username"
@@ -60,7 +59,7 @@ export const RegisterForm = () => {
             {...form.getInputProps('username')}
           />
         </Box>
-        <Box mb="0.75rem">
+        <Group mb={12} wrap="nowrap">
           <TextInput
             placeholder="Your first name"
             label="First name"
@@ -68,8 +67,6 @@ export const RegisterForm = () => {
             required={true}
             {...form.getInputProps('firstname')}
           />
-        </Box>
-        <Box mb="0.75rem">
           <TextInput
             placeholder="Your last name"
             label="Last name"
@@ -77,8 +74,8 @@ export const RegisterForm = () => {
             required={true}
             {...form.getInputProps('lastname')}
           />
-        </Box>
-        <Box mb="0.75rem">
+        </Group>
+        <Box mb={12}>
           <TextInput
             placeholder="Your email"
             label="Email"
@@ -87,11 +84,10 @@ export const RegisterForm = () => {
             {...form.getInputProps('email')}
           />
         </Box>
-        <Box mb="0.75rem">
+        <Box mb={12}>
           <PasswordInput
             placeholder="Your password"
             label="Password"
-            description="Password must include at least one letter, number and special character"
             required={true}
             {...form.getInputProps('password')}
           />
@@ -99,7 +95,6 @@ export const RegisterForm = () => {
         <PasswordInput
           placeholder="Confirm your password"
           label="Confirm your password"
-          description="Password must include at least one letter, number and special character"
           required={true}
           {...form.getInputProps('confirmPassword')}
         />
@@ -107,6 +102,6 @@ export const RegisterForm = () => {
           Register
         </Button>
       </form>
-    </Container>
+    </Box>
   );
 };

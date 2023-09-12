@@ -1,4 +1,6 @@
-import Theme from '../components/Theme/Theme';
+import { Theme } from '@/components/Theme';
+import '@mantine/core/styles.css';
+import './global.css';
 
 export default function RootLayout({
   children,

@@ -1,31 +1,42 @@
-import { MantineThemeOverride } from '@mantine/core';
-import { buttonStyle } from '../Button/button.style';
-import { baseInputStyle } from '../Input/baseInput.style';
+import { CSSVariablesResolver, createTheme, rem } from '@mantine/core';
+import { buttonStyle } from '../Button/Button.style';
+import { baseInputStyle } from '../Input/BaseInput.style';
 
-export const mantineTheme: MantineThemeOverride = {
+export const mantineTheme = createTheme({
   defaultRadius: 5,
   white: '#ffffff',
   primaryColor: 'violet',
-  primaryShade: 0,
+  fontFamily: 'Manrope, sans-serif',
   colors: {
-    violet: ['#735BD1', '#9B8ADC', '#735BD1', '#735BD1', '#735BD1'],
-    dark: ['#171717', '#202020', '#5B5B5B', '#979797', '#CCCCCC'],
+    violet: [
+      '#efeaff',
+      '#ccc2f3',
+      '#aa9be5',
+      '#8874d9',
+      '#664ccd',
+      '#4c32b3',
+      '#3b278c',
+      '#291b66',
+      '#18103f',
+      '#08051b',
+    ],
   },
-  globalStyles: (theme) => ({
-    '*, *::before, *::after': {
-      boxSizing: 'border-box',
-    },
-
-    body: {
-      ...theme.fn.fontStyles(),
-      backgroundColor: theme.colors.dark[0],
-      color: theme.white,
-      lineHeight: theme.lineHeight,
-    },
-  }),
   components: {
     Button: buttonStyle,
     TextInput: baseInputStyle,
     PasswordInput: baseInputStyle,
   },
-};
+  other: {
+    spacing: {
+      xxs: rem(5),
+    },
+  },
+});
+
+export const cssResolver: CSSVariablesResolver = (theme) => ({
+  variables: {
+    '--mantine-spacing-xxs': theme.other.spacing.xxs,
+  },
+  light: {},
+  dark: {},
+});

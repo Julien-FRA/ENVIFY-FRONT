@@ -10,23 +10,16 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'npm install -g npm@6'
+                sh 'rm -r node_modules'
                 sh 'npm install'
             }
         }
-        stage('Test') {
+        stage('Tests') {
             steps {
                 sh 'npm run test:types'
                 sh 'npm run test:lint'
                 sh 'npm run test:unit'
-            }
-        }
-        stage('Logs') {
-            steps {
-                script {
-                    echo "Jenkins Pipeline Details :"
-                    def consoleLog = Jenkins.getInstance().getItemByFullName(env.JOB_NAME).getBuildByNumber(Integer.parseInt(env.BUILD_NUMBER)).logFile.text
-                    echo "${consoleLog}"
-                }
             }
         }
     }

@@ -1,3 +1,5 @@
+import '@mantine/core/styles.css';
+import '../src/app/global.css';
 import { MantineProvider } from '@mantine/core';
 import type { Preview } from '@storybook/react';
 import { mantineTheme } from '../src/components/Theme/base.theme';

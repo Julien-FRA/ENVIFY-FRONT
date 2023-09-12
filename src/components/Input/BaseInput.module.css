@@ -1,0 +1,41 @@
+.label {
+  color: var(--mantine-color-dark-1);
+  font-size: var(--mantine-font-size-sm);
+  margin-bottom: var(--mantine-spacing-xxs);
+}
+
+.description {
+  margin-bottom: var(--mantine-spacing-xxs);
+}
+
+.input {
+  height: rem(40px);
+  border: 1px solid var(--mantine-color-dark-2);
+  background-color: var(--mantine-color-dark-4);
+  color: var(--mantine-color-white);
+
+  &:focus,
+  &:focus-within {
+    border-color: var(--mantine-color-white);
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--mantine-color-white);
+    -webkit-box-shadow: 0 0 0px 1000px var(--mantine-color-dark-4) inset;
+  }
+}
+.innerInput {
+  height: rem(40px);
+  color: var(--mantine-color-white);
+  background-color: transparent;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--mantine-color-white);
+    -webkit-box-shadow: 0 0 0px 1000px var(--mantine-color-dark-4) inset;
+    border: 0;
+  }
+}
