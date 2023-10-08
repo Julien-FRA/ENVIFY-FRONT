@@ -12,6 +12,7 @@ pipeline {
             steps {
                 sh 'npm install -g npm@6'
                 sh 'rm -rf node_modules'
+                sh 'rm -rf package-lock.json'
                 sh 'npm install'
             }
         }
