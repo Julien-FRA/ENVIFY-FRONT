@@ -1,6 +1,7 @@
 import { Theme } from '@/components/Theme';
-import '@mantine/core/styles.css';
 import './global.css';
+import '@mantine/core/styles.layer.css';
+import { ReactQueryClientProvider } from '@/utils/providers/react-query.provider';
 
 export default function RootLayout({
   children,
@@ -11,7 +12,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Theme>
-          <main>{children}</main>
+          <ReactQueryClientProvider>
+            <main>{children}</main>
+          </ReactQueryClientProvider>
         </Theme>
       </body>
     </html>

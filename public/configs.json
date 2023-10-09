@@ -1,0 +1,203 @@
+[
+  {
+    "id": 1,
+    "name": "docker/node",
+    "created_at": "2021-08-10T17:00:00Z",
+    "packages": [
+      {
+        "name": "Node",
+        "alias": "node",
+        "version": "18.0.0",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/node-js-1174925.png"
+      },
+      {
+        "name": "Docker",
+        "alias": "docker",
+        "version": "23.0.3",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/docker-226091.png"
+      },
+      {
+        "name": "Maria DB",
+        "alias": "mariadb",
+        "version": "8.0.0",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/mariadb-226029.png"
+      }
+    ],
+    "scripts": [
+      {
+        "comment": "install node",
+        "script": "sudo apt install nodejs"
+      },
+      {
+        "comment": "install npm",
+        "script": "sudo apt install npm"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "docker/mongodb",
+    "created_at": "2021-09-01T12:00:00Z",
+    "packages": [
+      {
+        "name": "MongoDB",
+        "alias": "mongodb",
+        "version": "5.0.2",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/mongodb-226029.png"
+      },
+      {
+        "name": "Docker",
+        "alias": "docker",
+        "version": "20.10.8",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/docker-226091.png"
+      }
+    ],
+    "scripts": [
+      {
+        "comment": "install docker",
+        "script": "sudo apt install docker"
+      },
+      {
+        "comment": "install docker-compose",
+        "script": "sudo apt install docker-compose"
+      },
+      {
+        "comment": "install mongodb",
+        "script": "sudo apt install mongodb"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "docker/postgresql",
+    "created_at": "2021-09-01T12:00:00Z",
+    "packages": [
+      {
+        "name": "PostgreSQL",
+        "alias": "postgresql",
+        "version": "14.0",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/postgresql-226047.png"
+      },
+      {
+        "name": "Docker",
+        "alias": "docker",
+        "version": "20.10.8",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/docker-226091.png"
+      }
+    ],
+    "scripts": [
+      {
+        "comment": "install docker",
+        "script": "sudo apt install docker"
+      },
+      {
+        "comment": "install docker-compose",
+        "script": "sudo apt install docker-compose"
+      },
+      {
+        "comment": "install postgresql",
+        "script": "sudo apt install postgresql"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "docker/redis",
+    "created_at": "2021-09-01T12:00:00Z",
+    "packages": [
+      {
+        "name": "Redis",
+        "alias": "redis",
+        "version": "6.2.5",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/redis-226047.png"
+      },
+      {
+        "name": "Docker",
+        "alias": "docker",
+        "version": "20.10.8",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/docker-226091.png"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "docker/nginx",
+    "created_at": "2021-09-01T12:00:00Z",
+    "packages": [
+      {
+        "name": "Nginx",
+        "alias": "nginx",
+        "version": "1.21.3",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/nginx-226047.png"
+      },
+      {
+        "name": "Docker",
+        "alias": "docker",
+        "version": "20.10.8",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/docker-226091.png"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "docker/wordpress",
+    "created_at": "2021-09-01T12:00:00Z",
+    "packages": [
+      {
+        "name": "WordPress",
+        "alias": "wordpress",
+        "version": "5.8.1",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/wordpress-226047.png"
+      },
+      {
+        "name": "PHP",
+        "alias": "php",
+        "version": "8.0.10",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/php-226047.png"
+      },
+      {
+        "name": "MySQL",
+        "alias": "mysql",
+        "version": "8.0.26",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/mysql-226047.png"
+      },
+      {
+        "name": "Docker",
+        "alias": "docker",
+        "version": "20.10.8",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/docker-226091.png"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "docker/elasticsearch",
+    "created_at": "2021-09-01T12:00:00Z",
+    "packages": [
+      {
+        "name": "Elasticsearch",
+        "alias": "elasticsearch",
+        "version": "7.14.0",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/elasticsearch-226047.png"
+      },
+      {
+        "name": "Kibana",
+        "alias": "kibana",
+        "version": "7.14.0",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/kibana-226047.png"
+      },
+      {
+        "name": "Logstash",
+        "alias": "logstash",
+        "version": "7.14.0",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/logstash-226047.png"
+      },
+      {
+        "name": "Docker",
+        "alias": "docker",
+        "version": "20.10.8",
+        "logo": "https://cdn.iconscout.com/icon/free/png-256/docker-226091.png"
+      }
+    ]
+  }
+]

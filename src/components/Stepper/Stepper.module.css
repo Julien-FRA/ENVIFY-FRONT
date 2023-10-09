@@ -1,0 +1,29 @@
+.stepIcon {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  &[data-completed] {
+    border-color: var(--mantine-color-violet-3);
+    background-color: var(--mantine-color-violet-7);
+  }
+  &[data-progress] {
+    border-color: var(--mantine-color-violet-4);
+  }
+}
+
+.steps {
+  margin-bottom: 0.75rem;
+}
+
+.separator {
+  background-color: var(--mantine-color-dark-7);
+  &[data-active='true'] {
+    background-color: var(--mantine-color-violet-3);
+  }
+}
+
+.scrollArea {
+  flex-grow: 1;
+  min-height: 40vh;
+  max-height: 60vh;
+}

@@ -6,7 +6,7 @@
 
   &[data-variant='filled'] {
     border: 1px solid var(--mantine-color-violet-4);
-    &:hover {
+    &:not(:disabled):hover {
       background-color: var(--mantine-color-violet-4);
     }
   }
@@ -14,7 +14,7 @@
   &[data-variant='outline'] {
     border: 1px solid var(--mantine-color-white);
 
-    &:hover {
+    &:not(:disabled):hover {
       background-color: var(--mantine-color-dark-4);
     }
 
@@ -41,4 +41,9 @@
       text-decoration: none;
     }
   }
+}
+
+.copyIcon {
+  fill: none;
+  stroke: var(--mantine-color-dark-3);
 }

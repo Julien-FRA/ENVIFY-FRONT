@@ -5,7 +5,7 @@ import { BsArrowRight } from 'react-icons/bs';
 import React from 'react';
 
 const meta: Meta<typeof Button> = {
-  title: 'components/Button',
+  title: 'components/Buttons/Button',
   component: Button,
   tags: ['autodocs'],
   args: {
@@ -17,8 +17,17 @@ const meta: Meta<typeof Button> = {
     },
   },
   argTypes: {
-    color: {
+    variant: {
       control: { type: 'string' }, // Automatically inferred when 'options' is defined
+      description: `Type of button. Type : string`,
+    },
+    href: {
+      control: { type: 'string' }, // Automatically inferred when 'options' is defined
+      description: `Link of button. Type : string`,
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      description: `Button is disabled ?. Type : Boolean`,
     },
   },
   decorators: [
@@ -42,16 +51,27 @@ export const Default: Story = {
   ),
 };
 
-export const Hovered: Story = {
-  ...Default,
-  parameters: {
-    pseudo: { hover: true },
-  },
+export const Disabled: Story = {
+  render: (args) => (
+    <>
+      <Button disabled={true} {...args} />
+      <Button variant="outline" disabled={true} {...args} />
+      <Button
+        variant="arrow"
+        disabled={true}
+        rightSection={<BsArrowRight />}
+        {...args}
+      />
+    </>
+  ),
 };
 
-export const Disabled: Story = {
-  ...Default,
-  args: {
-    disabled: true,
-  },
+export const Link: Story = {
+  render: (args) => (
+    <>
+      <Button href="/" {...args} />
+      <Button variant="outline" href="/" {...args} />
+      <Button variant="arrow" rightSection={<BsArrowRight />} {...args} />
+    </>
+  ),
 };

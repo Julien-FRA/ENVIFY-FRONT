@@ -8,13 +8,14 @@ import {
   Title,
   PasswordInput,
 } from '@mantine/core';
-import { UserDto } from '@/utils/types/user.type';
+import { UserLogType } from '@/utils/types/user.type';
+import { signIn } from 'next-auth/react';
 
 export const LoginForm = () => {
-  const form = useForm<UserDto>({
+  const form = useForm<UserLogType>({
     initialValues: {
-      email: '',
-      password: '',
+      email: 'envifyadmin@gmail.com',
+      password: 'test1',
     },
 
     validate: (values) => ({
@@ -27,6 +28,14 @@ export const LoginForm = () => {
     }),
   });
 
+  const onSubmit = (values: UserLogType) => {
+    signIn('credentials', {
+      email: values.email,
+      password: values.password,
+      callbackUrl: '/dashboard',
+    });
+  };
+
   return (
     <Box>
       <Title order={1} size={40} mb={8}>
@@ -36,7 +45,7 @@ export const LoginForm = () => {
         Sign in to your account
       </Text>
 
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit(onSubmit)}>
         <Box mb={12}>
           <TextInput
             placeholder="Your email"

@@ -9,6 +9,7 @@ export const Theme = ({ children }: { children: JSX.Element }) => {
   return (
     <MantineProvider
       theme={{ ...mantineTheme, ...manrope.style }}
+      defaultColorScheme="dark"
       cssVariablesResolver={cssResolver}
     >
       {children}

@@ -1,0 +1,15 @@
+.navbar {
+  padding: var(--mantine-spacing-xl) var(--mantine-spacing-lg);
+}
+
+.link {
+  display: 'block';
+  text-decoration: 'none';
+  border-radius: var(--mantine-radius-sm);
+  line-height: 1;
+
+  &:hover {
+    background-color: var(--mantine-color-dark-4);
+    color: var(mantine-color-white);
+  }
+}

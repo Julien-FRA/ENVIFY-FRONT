@@ -9,36 +9,54 @@ import {
   PasswordInput,
   Group,
 } from '@mantine/core';
-import { UserCreateDto } from '@/utils/types/user.type';
+import { CreateUserDto } from '@/utils/types/user.type';
+import { userRegister } from '@/utils/api/user.api';
+import { signIn } from 'next-auth/react';
 
 export const RegisterForm = () => {
-  const form = useForm<UserCreateDto>({
+  const form = useForm<CreateUserDto>({
     initialValues: {
       username: '',
-      firstname: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      company: '',
     },
     clearInputErrorOnChange: true,
 
     validate: {
       username: (value) =>
         value.length >= 1 ? null : 'Username must be at least 1 characters',
-      firstname: (value) =>
-        value.length >= 1 ? null : 'First name must be at least 1 characters',
-      lastname: (value) =>
-        value.length >= 1 ? null : 'Last name must be at least 1 characters',
+      first_name: (value) =>
+        value && value.length >= 1
+          ? null
+          : 'First name must be at least 1 characters',
+      last_name: (value) =>
+        value && value.length >= 1
+          ? null
+          : 'Last name must be at least 1 characters',
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
       password: (value) =>
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(value)
           ? null
           : 'Password must include at least one letter, number and special character',
-      confirmPassword: (value, values) =>
-        value !== values.password ? `Your passwords don't match` : null,
     },
   });
+
+  const onSubmit = async (values: CreateUserDto) => {
+    const res = await userRegister({
+      ...values,
+    });
+
+    if (!res) return;
+
+    signIn('credentials', {
+      email: res.email,
+      password: res.password,
+      callbackUrl: '/dashboard',
+    });
+  };
 
   return (
     <Box>
@@ -49,12 +67,12 @@ export const RegisterForm = () => {
         Create a new account
       </Text>
 
-      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+      <form onSubmit={form.onSubmit(onSubmit)}>
         <Box mb={12}>
           <TextInput
             placeholder="Your username"
             label="Username"
-            description={undefined}
+            name="username"
             required={true}
             {...form.getInputProps('username')}
           />
@@ -63,14 +81,14 @@ export const RegisterForm = () => {
           <TextInput
             placeholder="Your first name"
             label="First name"
-            description={undefined}
+            name="firstname"
             required={true}
             {...form.getInputProps('firstname')}
           />
           <TextInput
             placeholder="Your last name"
             label="Last name"
-            description={undefined}
+            name="lastname"
             required={true}
             {...form.getInputProps('lastname')}
           />
@@ -79,7 +97,7 @@ export const RegisterForm = () => {
           <TextInput
             placeholder="Your email"
             label="Email"
-            description={undefined}
+            name="email"
             required={true}
             {...form.getInputProps('email')}
           />
@@ -88,6 +106,7 @@ export const RegisterForm = () => {
           <PasswordInput
             placeholder="Your password"
             label="Password"
+            name="password"
             required={true}
             {...form.getInputProps('password')}
           />
@@ -95,6 +114,7 @@ export const RegisterForm = () => {
         <PasswordInput
           placeholder="Confirm your password"
           label="Confirm your password"
+          name="confirmpassword"
           required={true}
           {...form.getInputProps('confirmPassword')}
         />

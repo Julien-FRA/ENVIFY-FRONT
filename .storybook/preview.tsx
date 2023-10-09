@@ -3,6 +3,7 @@ import '../src/app/global.css';
 import { MantineProvider } from '@mantine/core';
 import type { Preview } from '@storybook/react';
 import { mantineTheme } from '../src/components/Theme/base.theme';
+import { ReactQueryClientProvider } from '@/utils/providers/react-query.provider';
 
 const preview: Preview = {
   parameters: {
@@ -26,7 +27,11 @@ const preview: Preview = {
 // This is the place responsible for grouping all decorators from the storybook app
 export const decorators: Preview['decorators'] = [
   (Story) => {
-    return <MantineProvider theme={mantineTheme}>{Story()}</MantineProvider>;
+    return (
+      <ReactQueryClientProvider>
+        <MantineProvider theme={mantineTheme}>{Story()}</MantineProvider>;
+      </ReactQueryClientProvider>
+    );
   },
 ];
 

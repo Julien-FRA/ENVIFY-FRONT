@@ -7,6 +7,8 @@ import Link from 'next/link';
 type ButtonProps = MantineButtonProps & {
   href?: string;
   variant?: MantineButtonProps['variant'] | 'arrow';
+  onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 export const Button = ({

@@ -30,7 +30,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/__tests__/index.test.ts",
-    "src/__tests__/index.test.ts"
+    "src/__tests__/**/*.jsx"
   ],
   "exclude": ["node_modules"]
 }
