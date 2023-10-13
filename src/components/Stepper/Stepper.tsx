@@ -1,8 +1,13 @@
 'use client';
 import React from 'react';
-import { Stepper as StepperContainer, StepperProps } from '@mantine/core';
+import {
+  Stepper as StepperContainer,
+  StepperProps,
+  StepperStep,
+  ScrollArea,
+  StepperStepProps,
+} from '@mantine/core';
 import { useStepperContext } from './Stepper.provider';
-import { ScrollArea, StepperStep, StepperStepProps } from '@mantine/core';
 
 export const Stepper = ({
   children,

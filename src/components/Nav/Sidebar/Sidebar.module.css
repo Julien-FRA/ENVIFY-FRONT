@@ -1,5 +1,6 @@
 .navbar {
   padding: var(--mantine-spacing-xl) var(--mantine-spacing-lg);
+  justify-content: space-between;
 }
 
 .link {

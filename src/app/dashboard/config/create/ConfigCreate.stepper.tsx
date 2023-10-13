@@ -8,13 +8,11 @@ import { ConfigNameBlock } from './block/ConfigName.block';
 import { SelectPackage } from './block/SelectPackage.block';
 import { StepperButtons } from '@/components/Stepper/StepperButton';
 import { UseFormInput, hasLength, isNotEmpty } from '@mantine/form';
-import {
-  ConfigContext,
-  ConfigFormProvider,
-  useConfigForm,
-} from './configForm.context';
+import { ConfigFormProvider, useConfigForm } from './configForm.context';
+import { ConfigInput } from '@/utils/types/config.type';
+import { ConfigProperties } from './block/ConfigProperties.block';
 
-export const configCreateFormInput: UseFormInput<ConfigContext> = {
+export const configCreateFormInput: UseFormInput<ConfigInput> = {
   initialValues: {
     configName: '',
     operatingSystem: {
@@ -22,6 +20,7 @@ export const configCreateFormInput: UseFormInput<ConfigContext> = {
       versionId: 0,
     },
     packages: [],
+    packagesProperties: [],
   },
   validate: {
     configName: hasLength(
@@ -57,9 +56,19 @@ export const ConfigCreateStepper = () => {
           >
             <SelectPackage />
           </Step>
+          <Step
+            label="Select you properties"
+            description="Choose your personal propeties"
+          >
+            <ConfigProperties />
+          </Step>
         </Stepper>
         <StepperButtons
-          stepsValidation={[['configName', 'operatingSystem'], 'packages']}
+          stepsValidation={[
+            ['configName', 'operatingSystem'],
+            'packages',
+            'packagesProperties',
+          ]}
         />
       </StepperProvider>
     </StepperFormProvider>

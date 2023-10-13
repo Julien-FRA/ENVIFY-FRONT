@@ -10,6 +10,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>Envify</title>
+        <link rel="icon" type="image/x-icon" href="../logo.svg" />
+      </head>
       <body>
         <Theme>
           <ReactQueryClientProvider>

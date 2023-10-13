@@ -1,38 +1,44 @@
 'use client';
-import { useForm } from '@mantine/form';
+import { matchesField, useForm } from '@mantine/form';
 import {
   Box,
-  Button,
   Text,
   TextInput,
   Title,
   PasswordInput,
   Group,
+  Flex,
 } from '@mantine/core';
 import { CreateUserDto } from '@/utils/types/user.type';
 import { userRegister } from '@/utils/api/user.api';
 import { signIn } from 'next-auth/react';
+import { Button } from '../Button';
+
+type userFormType = CreateUserDto & {
+  confirmPassword: string;
+};
 
 export const RegisterForm = () => {
-  const form = useForm<CreateUserDto>({
+  const form = useForm<userFormType>({
     initialValues: {
       username: '',
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       email: '',
-      password: '',
       company: '',
+      password: '',
+      confirmPassword: '',
     },
     clearInputErrorOnChange: true,
 
     validate: {
       username: (value) =>
         value.length >= 1 ? null : 'Username must be at least 1 characters',
-      first_name: (value) =>
+      firstName: (value) =>
         value && value.length >= 1
           ? null
           : 'First name must be at least 1 characters',
-      last_name: (value) =>
+      lastName: (value) =>
         value && value.length >= 1
           ? null
           : 'Last name must be at least 1 characters',
@@ -41,15 +47,21 @@ export const RegisterForm = () => {
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(value)
           ? null
           : 'Password must include at least one letter, number and special character',
+      confirmPassword: matchesField('password', 'Passwords are not the same'),
     },
   });
 
   const onSubmit = async (values: CreateUserDto) => {
     const res = await userRegister({
-      ...values,
+      email: values.email,
+      username: values.username,
+      lastName: values.lastName,
+      firstName: values.firstName,
+      company: values.company,
+      password: values.password,
     });
 
-    if (!res) return;
+    if (!res.id) return;
 
     signIn('credentials', {
       email: res.email,
@@ -81,16 +93,16 @@ export const RegisterForm = () => {
           <TextInput
             placeholder="Your first name"
             label="First name"
-            name="firstname"
+            name="firstName"
             required={true}
-            {...form.getInputProps('firstname')}
+            {...form.getInputProps('firstName')}
           />
           <TextInput
             placeholder="Your last name"
             label="Last name"
-            name="lastname"
+            name="lastName"
             required={true}
-            {...form.getInputProps('lastname')}
+            {...form.getInputProps('lastName')}
           />
         </Group>
         <Box mb={12}>
@@ -114,7 +126,7 @@ export const RegisterForm = () => {
         <PasswordInput
           placeholder="Confirm your password"
           label="Confirm your password"
-          name="confirmpassword"
+          name="confirmPassword"
           required={true}
           {...form.getInputProps('confirmPassword')}
         />
@@ -122,6 +134,14 @@ export const RegisterForm = () => {
           Register
         </Button>
       </form>
+      <Flex mt={15} align="center">
+        <Text size="sm" c="gray.3">
+          You have an account ?
+        </Text>
+        <Button href="/login" variant="arrow" px={2} miw="4.25rem">
+          Sing in
+        </Button>
+      </Flex>
     </Box>
   );
 };

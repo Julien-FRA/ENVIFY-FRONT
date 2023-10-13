@@ -5,8 +5,8 @@ export type UserDto = {
   username: string;
   email: string;
   password: string;
-  last_name?: string | null;
-  first_name?: string | null;
+  lastName?: string | null;
+  firstName?: string | null;
   company?: string | null;
 };
 
@@ -18,6 +18,7 @@ export type UserLogType = {
 };
 
 export type UserAuthType = {
+  userId: string;
   email: string;
   token: string;
   profil?: string;

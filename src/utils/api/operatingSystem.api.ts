@@ -5,7 +5,7 @@ import {
 } from '../types/operatingSystem.type';
 
 export const getOperatingSystem = async () =>
-  await apiClient.get<OperatingSystemDto[]>('/api/v1/os');
+  await apiClient.get<OperatingSystemDto[]>('/os');
 
 export const getOperatingSystemVersions = async (id: number) =>
-  await apiClient.get<OperatingSystemVersionDto[]>(`/api/v1/os/${id}/versions`);
+  await apiClient.get<OperatingSystemVersionDto[]>(`/os/${id}/versions`);

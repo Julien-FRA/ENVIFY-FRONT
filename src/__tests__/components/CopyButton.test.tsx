@@ -6,19 +6,21 @@ describe('<ButtonCopy />', () => {
     render(<ButtonCopy value="" />);
   });
 
-  it('Get basics fields', () => {
+  it('Snapshot test', () => {
     const { container } = render(<ButtonCopy value="value" />);
 
-    expect(screen.getByRole('button')).toBeInTheDocument();
-
     expect(container).toMatchSnapshot();
+  });
+
+  it('Get basics fields', () => {
+    render(<ButtonCopy value="value" />);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   it('Click button', () => {
     const { container } = render(<ButtonCopy value="value" />);
 
     expect(fireEvent.click(container)).toBeTruthy();
-
-    expect(container).toMatchSnapshot();
   });
 });

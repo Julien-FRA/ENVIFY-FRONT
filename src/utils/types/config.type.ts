@@ -1,13 +1,11 @@
+import { OperatingSystemInput } from './operatingSystem.type';
+import { PackageInput, PackagePropertiesInput } from './package.type';
+
 export type Package = {
   name: string;
   version: string[];
   alias: string;
   logo?: string;
-};
-
-export type PackageInput = {
-  name: string;
-  version: string;
 };
 
 export type Script = {
@@ -24,3 +22,10 @@ export type Config = {
 };
 
 export type Configs = Config[];
+
+export type ConfigInput = {
+  configName: string;
+  operatingSystem: OperatingSystemInput;
+  packages: PackageInput[];
+  packagesProperties: PackagePropertiesInput[];
+};

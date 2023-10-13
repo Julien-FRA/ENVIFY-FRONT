@@ -20,6 +20,18 @@ svg {
   fill: var(--mantine-color-white);
   width: 1.5rem;
   height: 1.5rem;
+
+  &.mantine-Checkbox-icon {
+    width: auto;
+    height: auto;
+  }
+}
+
+p,
+span,
+a,
+button {
+  font-weight: 600 !important;
 }
 
 p,

@@ -7,9 +7,10 @@ import { useQuery } from 'react-query';
 import { useCallback } from 'react';
 import { PackageDto } from '@/utils/types/package.type';
 import { ConfigError } from './ConfigError.block';
+import { Loader } from '@/components/Loader';
 
 export const SelectPackage = () => {
-  const { data: packages } = useQuery('packages', getPackages);
+  const { isLoading, data: packages } = useQuery('packages', getPackages);
 
   const form = useConfigFormContext();
 
@@ -25,14 +26,22 @@ export const SelectPackage = () => {
       if (index === -1)
         return form.insertListItem('packages', {
           name: packageName,
-          version: packageVersion,
+          packageVersions: {
+            id: Number(packageVersion),
+          },
         });
-      return form.setFieldValue(`packages.${index}.version`, packageVersion);
+      return form.setFieldValue(
+        `packages.${index}.packageVersions.id`,
+        packageVersion
+      );
     },
     [form]
   );
 
+  if (isLoading) return <Loader />;
+
   if (!packages || !packages.length) return <ConfigError />;
+
   return <GridSelectPackage packages={packages} handleChange={handleChange} />;
 };
 
@@ -55,9 +64,10 @@ const GridSelectPackage = ({
         <GridCol span={4} key={pkg.id}>
           <CheckboxCard
             packageId={pkg.id}
-            title={pkg.name}
+            name={pkg.name}
             // todo: remove used image url
             image="https://cdn.iconscout.com/icon/free/png-256/certbot-1175037.png"
+            versions={pkg.packageVersions}
             onChange={handleChange}
           />
         </GridCol>

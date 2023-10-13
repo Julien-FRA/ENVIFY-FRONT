@@ -3,7 +3,7 @@ import { BlockScript } from '.';
 import React from 'react';
 
 const meta: Meta<typeof BlockScript> = {
-  title: 'components/BlockScript',
+  title: 'components/Blocks/BlockScript',
   component: BlockScript,
   tags: ['autodocs'],
   args: {},

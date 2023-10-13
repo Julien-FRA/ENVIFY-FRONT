@@ -1,14 +1,14 @@
-import useSliceArrayBy from '@/hooks/useSliceArrayBy';
 import { Button } from '@/components/Button';
 import { ConfigCard } from '@/components/Card/ConfigCard';
 import { Box, Grid, GridCol } from '@mantine/core';
 import { BsArrowRight } from 'react-icons/bs';
 import { apiClient } from '@/utils/api/apiFactory';
+import { getArrayFirsts } from '@/utils/helpers';
 import type { Config } from '@/utils/types/config.type';
 
 export default async function Dashboard() {
   const userConfigs: Config[] = await apiClient.get('/configs');
-  const slicedConfigs = useSliceArrayBy<Config>(3)(userConfigs);
+  const slicedConfigs = getArrayFirsts<Config>(3)(userConfigs);
 
   return (
     <>

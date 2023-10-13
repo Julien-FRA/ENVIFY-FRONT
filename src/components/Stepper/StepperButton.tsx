@@ -30,7 +30,7 @@ export const StepperButtons = ({
   };
 
   return (
-    <Group justify="end" mt="xl">
+    <Group justify="end" mt="xl" pb="xl">
       {activeStep > 0 ? (
         <Button onClick={prevStep} variant="outline" type="submit">
           Précédent

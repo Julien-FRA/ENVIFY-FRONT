@@ -13,6 +13,19 @@ describe('<PasswordInput />', () => {
     );
   });
 
+  it('Snapshot test', () => {
+    const { container } = render(
+      <PasswordInput
+        placeholder="Your password"
+        label="Password"
+        required={true}
+        name="password"
+      />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
   it('Get basics fields', () => {
     const { container } = render(
       <PasswordInput

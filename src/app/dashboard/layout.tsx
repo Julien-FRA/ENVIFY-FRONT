@@ -1,4 +1,5 @@
 import { Sidebar } from '@/components/Nav/Sidebar';
+import { NextAuthProvider } from '@/utils/providers/next-auth.provider';
 import { AppShell, AppShellMain, Container } from '@mantine/core';
 
 export default function DashboardLayout({
@@ -7,7 +8,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <NextAuthProvider>
       <AppShell navbar={{ width: 250, breakpoint: 'sm' }}>
         <Sidebar />
         <AppShellMain>
@@ -16,7 +17,6 @@ export default function DashboardLayout({
           </Container>
         </AppShellMain>
       </AppShell>
-      <></>
-    </>
+    </NextAuthProvider>
   );
 }

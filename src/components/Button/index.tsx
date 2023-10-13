@@ -15,6 +15,7 @@ export const Button = ({
   href,
   variant = 'filled',
   children,
+  type,
   ...props
 }: ButtonProps) => {
   return href ? (
@@ -22,7 +23,7 @@ export const Button = ({
       {children}
     </MantineButton>
   ) : (
-    <MantineButton variant={variant} {...props}>
+    <MantineButton variant={variant} type={type} {...props}>
       {children}
     </MantineButton>
   );

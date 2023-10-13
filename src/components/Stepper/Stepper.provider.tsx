@@ -1,5 +1,12 @@
 'use client';
-import React, { FC, createContext, useContext, useState } from 'react';
+import React, {
+  FC,
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useCallback,
+} from 'react';
 import {
   UseForm,
   UseFormInput,
@@ -23,19 +30,28 @@ export const StepperProvider = ({
 }) => {
   const [activeStep, setActiveStep] = useState(0);
 
-  const nextStep = () => setActiveStep((prevStep) => prevStep + 1);
+  const nextStep = useCallback(
+    () => setActiveStep((prevStep) => prevStep + 1),
+    []
+  );
 
-  const prevStep = () => setActiveStep((prevStep) => prevStep - 1);
+  const prevStep = useCallback(
+    () => setActiveStep((prevStep) => prevStep - 1),
+    []
+  );
+
+  const contextValue = useMemo(
+    () => ({
+      activeStep,
+      setActiveStep,
+      nextStep,
+      prevStep,
+    }),
+    [activeStep, setActiveStep, nextStep, prevStep]
+  );
 
   return (
-    <StepperContext.Provider
-      value={{
-        activeStep,
-        setActiveStep,
-        nextStep,
-        prevStep,
-      }}
-    >
+    <StepperContext.Provider value={contextValue}>
       {children}
     </StepperContext.Provider>
   );

@@ -13,6 +13,19 @@ describe('<PasswordInput />', () => {
     );
   });
 
+  it('Snapshot test', () => {
+    const { container } = render(
+      <TextInput
+        placeholder="Your email"
+        label="Email"
+        name="email"
+        required={true}
+      />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
   it('Get basics fields', () => {
     const { container } = render(
       <TextInput
@@ -28,8 +41,6 @@ describe('<PasswordInput />', () => {
 
     expect(label).toBeInTheDocument();
     expect(inputText).toBeInTheDocument();
-
-    // expect(container).toMatchSnapshot();
   });
 
   it('Get label text, placeholder', () => {
@@ -44,7 +55,5 @@ describe('<PasswordInput />', () => {
 
     expect(getByText('Email')).toBeTruthy();
     expect(getByPlaceholderText('Your email')).toBeTruthy();
-
-    // expect(container).toMatchSnapshot();
   });
 });

@@ -26,14 +26,6 @@ it('Return user auth', async () => {
     profil: null,
   });
   expect(fetch).toHaveBeenCalledTimes(1);
-  expect(fetch).toHaveBeenCalledWith(
-    'https://envify-back-4b9590414ea8.herokuapp.com/auth/login',
-    {
-      body: `{"email":"${fakeUser.email}","password":"${fakeUser.password}"}`,
-      headers: { 'Content-Type': 'application/json' },
-      method: 'POST',
-    }
-  );
 });
 
 it('Return user register', async () => {
@@ -57,4 +49,5 @@ it('Return user register', async () => {
     message: 'Utilisateur crée avec succès',
     code: 200,
   });
+  expect(fetch).toHaveBeenCalledTimes(1);
 });

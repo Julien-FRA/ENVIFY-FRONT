@@ -6,6 +6,12 @@ describe('<RegisterForm />', () => {
     render(<RegisterForm />);
   });
 
+  it('Snapshot test', () => {
+    const { container } = render(<RegisterForm />);
+
+    expect(container).toMatchSnapshot();
+  });
+
   it('Get basics fields', () => {
     const { container } = render(<RegisterForm />);
 

@@ -1,28 +1,24 @@
 'use client';
 import { Select } from '@/components/Select';
-import { getPackageVersions } from '@/utils/api/package.api';
-import { useQuery } from 'react-query';
-
-const getVersionsByIdOptions = (packageId: number) =>
-  getPackageVersions(packageId).then((versions) =>
-    versions.map((version) => ({
-      value: `${version.id}`,
-      label: `${version.versionNumber}`,
-    }))
-  );
+import { PackageVersionDto } from '@/utils/types/package.type';
+import { useMemo } from 'react';
 
 export const PackageVersionSelect = ({
-  packageId,
+  versions,
   selectedVersion,
   handleVersion,
 }: {
-  packageId: number;
+  versions: PackageVersionDto[];
   selectedVersion: string | null;
   handleVersion: (versionValue: string) => void;
 }) => {
-  const { data: versionOptions } = useQuery(
-    ['packageVersionOptions', packageId],
-    () => getVersionsByIdOptions(packageId)
+  const parseVersionsOption = useMemo(
+    () =>
+      versions.map((version) => ({
+        value: `${version.id}`,
+        label: `${version.versionNumber}`,
+      })),
+    [versions]
   );
 
   return (
@@ -30,7 +26,7 @@ export const PackageVersionSelect = ({
       placeholder="Select à version *"
       variant="unstyled"
       required
-      data={versionOptions}
+      data={parseVersionsOption}
       value={selectedVersion}
       onChange={handleVersion}
     />

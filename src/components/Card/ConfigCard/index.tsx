@@ -1,6 +1,5 @@
 import classes from './ConfigCard.module.css';
-import useSliceArrayBy from '@/hooks/useSliceArrayBy';
-import useFormatDateRelative from '@/hooks/useFormatDateRelative';
+import { getFormatDateRelative, getArrayFirsts } from '@/utils/helpers';
 import { Avatar, AvatarGroup, Box, Flex, Text } from '@mantine/core';
 import { BsChevronRight } from 'react-icons/bs';
 import type { Config, Package } from '@/utils/types/config.type';
@@ -13,8 +12,8 @@ export const ConfigCard = ({
   config: Config;
   type?: string;
 }) => {
-  const slicedPackages = useSliceArrayBy<Package>(3)(config?.packages);
-  const formattedCreatedAt = useFormatDateRelative(config?.created_at);
+  const slicedPackages = getArrayFirsts<Package>(3)(config?.packages);
+  const formattedCreatedAt = getFormatDateRelative(config?.created_at);
 
   return (
     <Link

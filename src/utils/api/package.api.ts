@@ -1,8 +1,8 @@
-import { PackageDto, PackageVersionDto } from '../types/package.type';
+import { PackageDto, PackagePropertiesDto } from '../types/package.type';
 import { apiClient } from './apiFactory';
 
 export const getPackages = async () =>
-  await apiClient.get<PackageDto[]>('/api/v1/packages');
+  await apiClient.get<PackageDto[]>('/packages');
 
-export const getPackageVersions = async (id: number) =>
-  await apiClient.get<PackageVersionDto[]>(`/api/v1/packages/${id}/versions`);
+export const getPackageProperties = async () =>
+  await apiClient.get<PackagePropertiesDto[]>(`/config_package_files/`);

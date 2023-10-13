@@ -9,7 +9,7 @@ export default async function ReadConfig({
   params: { slug: string };
 }) {
   // TODO: fetch config by id when backend endpoint will be ready
-  const configs: Config[] = await apiClient.get(`/configs.json`);
+  const configs: Config[] = await apiClient.get(`/configs`);
   const config = configs.find((config) => config.id.toString() === params.slug);
 
   return (

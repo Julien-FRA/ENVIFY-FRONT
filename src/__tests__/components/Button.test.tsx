@@ -6,21 +6,23 @@ describe('<Button />', () => {
     render(<Button />);
   });
 
-  it('Get basics fields', () => {
+  it('Snapshot test', () => {
     const { container } = render(<Button>Click</Button>);
-
-    expect(screen.getByRole('button')).toBeInTheDocument();
 
     expect(container).toMatchSnapshot();
   });
 
+  it('Get basics fields', () => {
+    render(<Button>Click</Button>);
+
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
   it('Disabled button', () => {
-    const { container } = render(<Button disabled>Click</Button>);
+    render(<Button disabled>Click</Button>);
     const button = screen.getByRole('button');
 
     expect(button).toBeDisabled();
-
-    expect(container).toMatchSnapshot();
   });
 
   it('Link button', () => {
@@ -28,16 +30,12 @@ describe('<Button />', () => {
     const button = container.querySelector('a');
 
     expect(button).toHaveAttribute('href', '/');
-
-    expect(container).toMatchSnapshot();
   });
 
   it('Click button', () => {
     const { container } = render(<Button />);
 
     expect(fireEvent.click(container)).toBeTruthy();
-
-    expect(container).toMatchSnapshot();
   });
 
   it('Primary button', () => {
@@ -46,8 +44,6 @@ describe('<Button />', () => {
 
     expect(button).toBeInTheDocument();
     expect(button).toBeTruthy();
-
-    expect(container).toMatchSnapshot();
   });
 
   it('Secondary button', () => {
@@ -56,7 +52,5 @@ describe('<Button />', () => {
 
     expect(button).toBeInTheDocument();
     expect(button).toBeTruthy();
-
-    expect(container).toMatchSnapshot();
   });
 });

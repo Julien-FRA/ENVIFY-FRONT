@@ -7,14 +7,52 @@ const meta: Meta<typeof CheckboxCard> = {
   title: 'components/Cards/CheckboxCard',
   component: CheckboxCard,
   tags: ['autodocs'],
-  args: {},
+  args: {
+    versions: [
+      {
+        id: 21,
+        versionNumber: '21',
+        url: 'https://www.java.com/releases/',
+        versionStatusId: 1,
+        packageId: 10,
+      },
+      {
+        id: 22,
+        versionNumber: '20',
+        url: 'https://www.java.com/releases/',
+        versionStatusId: 1,
+        packageId: 10,
+      },
+      {
+        id: 23,
+        versionNumber: '19',
+        url: 'https://www.java.com/releases/',
+        versionStatusId: 1,
+        packageId: 10,
+      },
+      {
+        id: 24,
+        versionNumber: '18',
+        url: 'https://www.java.com/releases/',
+        versionStatusId: 1,
+        packageId: 10,
+      },
+      {
+        id: 25,
+        versionNumber: '17',
+        url: 'https://www.java.com/releases/',
+        versionStatusId: 1,
+        packageId: 10,
+      },
+    ],
+  },
   parameters: {
     docs: {
       toc: true, // 👈 Enables the table of contents
     },
   },
   argTypes: {
-    title: {
+    name: {
       description: `Title of card.`,
     },
     onChange: {
@@ -42,14 +80,15 @@ export default meta;
 type Story = StoryObj<typeof CheckboxCard>;
 
 export const Default: Story = {
-  render: function Render() {
+  render: function Render(args) {
     const { value, handleChange } = useCheckboxOnChange();
 
     return (
       <>
         <CheckboxCard
+          versions={args.versions}
           packageId={1}
-          title={'Nodejs'}
+          name={'Nodejs'}
           image={'https://nodejs.org/static/images/logo.svg'}
           onChange={handleChange}
         />
@@ -61,14 +100,15 @@ export const Default: Story = {
 };
 
 export const WithoutImage: Story = {
-  render: function Render() {
+  render: function Render(args) {
     const { value, handleChange } = useCheckboxOnChange();
 
     return (
       <>
         <CheckboxCard
+          versions={args.versions}
           packageId={1}
-          title={'Nodejs'}
+          name={'Nodejs'}
           image={''}
           onChange={handleChange}
         />
@@ -79,12 +119,17 @@ export const WithoutImage: Story = {
 };
 
 export const WithoutVersion: Story = {
-  render: function Render() {
+  render: function Render(args) {
     const { value, handleChange } = useCheckboxOnChange();
 
     return (
       <>
-        <CheckboxCard title={'Nodejs'} packageId={1} onChange={handleChange} />
+        <CheckboxCard
+          versions={args.versions}
+          name={'Nodejs'}
+          packageId={1}
+          onChange={handleChange}
+        />
         <DisplayValue value={value} />
       </>
     );

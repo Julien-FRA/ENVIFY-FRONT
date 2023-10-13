@@ -1,9 +1,13 @@
+'use client';
 import React from 'react';
-import { Flex, Box } from '@mantine/core';
-import { Button, ButtonIcon } from '../../Button';
-import { GiHexagonalNut } from 'react-icons/gi';
+import { Flex } from '@mantine/core';
+import { Button } from '../../Button';
+import { useSession } from 'next-auth/react';
+import { EnvifyLogoButtno } from '@/components/Button/Logo.button';
 
 export const Header = () => {
+  const { data: session } = useSession();
+
   return (
     <Flex
       style={{
@@ -15,16 +19,20 @@ export const Header = () => {
       h={80}
       w="100%"
     >
-      <ButtonIcon>
-        <GiHexagonalNut size={24} />
-      </ButtonIcon>
+      <EnvifyLogoButtno />
       <Flex>
-        <Box mr="1rem">
-          <Button variant="outline" href="/login">
-            Login
+        {session ? (
+          <Button variant="outline" href="/dashboard">
+            Dashboard
           </Button>
-        </Box>
-        <Button href="/register">Get started</Button>
+        ) : (
+          <>
+            <Button variant="outline" href="/login" mr={16}>
+              Login
+            </Button>
+            <Button href="/register">Get started</Button>
+          </>
+        )}
       </Flex>
     </Flex>
   );
