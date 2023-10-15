@@ -2,6 +2,10 @@ import type { StoryObj, Meta } from '@storybook/react';
 import React, { useState } from 'react';
 import { CheckboxCard } from '.';
 import { Group, SimpleGrid } from '@mantine/core';
+import {
+  HandleVersion,
+  PackageVersion,
+} from '@/app/dashboard/config/create/block/SelectPackage.block';
 
 const meta: Meta<typeof CheckboxCard> = {
   title: 'components/Cards/CheckboxCard',
@@ -60,9 +64,6 @@ const meta: Meta<typeof CheckboxCard> = {
         disable: true,
       },
     },
-    image: {
-      description: `Image linked to the package.`,
-    },
   },
   decorators: [
     (Story) => {
@@ -89,7 +90,6 @@ export const Default: Story = {
           versions={args.versions}
           packageId={1}
           name={'Nodejs'}
-          image={'https://nodejs.org/static/images/logo.svg'}
           onChange={handleChange}
         />
 
@@ -109,7 +109,6 @@ export const WithoutImage: Story = {
           versions={args.versions}
           packageId={1}
           name={'Nodejs'}
-          image={''}
           onChange={handleChange}
         />
         <DisplayValue value={value} />
@@ -137,8 +136,9 @@ export const WithoutVersion: Story = {
 };
 
 type CardCheckBoxOnChange = {
-  packageName: string;
-  packageVersion: string | null;
+  packageId: number;
+  name: string;
+  packageVersion: PackageVersion | null;
   checked: boolean;
 };
 
@@ -157,15 +157,17 @@ const DisplayValue = ({
 const useCheckboxOnChange = () => {
   const [value, setValue] = useState<CardCheckBoxOnChange | undefined>();
 
-  const handleChange = (
-    packageName: string,
-    packageVersion: string | null,
-    checked: boolean
+  const handleChange: HandleVersion = (
+    packageId,
+    name,
+    packageVersion,
+    checked
   ) => {
     setValue({
-      packageName: packageName,
-      packageVersion: packageVersion,
-      checked: checked,
+      packageId,
+      name,
+      packageVersion,
+      checked,
     });
   };
 

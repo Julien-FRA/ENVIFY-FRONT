@@ -1,4 +1,3 @@
-// todo : add logo
 export type PackageDto = {
   id: number;
   name: string;
@@ -40,7 +39,7 @@ export type PropertiesMultipleInput = {
   field: string;
   label: string;
   properties: PropertiesSingleInput[];
-  value: PropertiesMultipleInput['properties'][];
+  values: PropertiesMultipleInput['properties'][];
 };
 
 export type PropertiesSingleInput =

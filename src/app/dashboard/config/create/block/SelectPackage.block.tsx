@@ -80,8 +80,6 @@ const GridSelectPackage = ({
           <CheckboxCard
             packageId={pkg.id}
             name={pkg.name}
-            // todo: remove used image url
-            image="https://cdn.iconscout.com/icon/free/png-256/certbot-1175037.png"
             versions={pkg.packageVersions}
             onChange={handleChange}
           />

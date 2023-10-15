@@ -119,7 +119,7 @@ const MultipleInputs = (props: PropertiesMultipleInput & ArrayIndexes) => {
 
   useEffect(() => {
     form.setFieldValue(
-      `packages.${props.packageIndex}.packageProperties.${props.propertyIndex}.value`,
+      `packages.${props.packageIndex}.packageProperties.${props.propertyIndex}.values`,
       propertiesValues
     );
 
@@ -142,7 +142,7 @@ const MultipleInputs = (props: PropertiesMultipleInput & ArrayIndexes) => {
         JSON.stringify(prevPropertiesValues)
       );
 
-      newPropertiesValues[propertyIndex][subPropertyIndex].value = value;
+      newPropertiesValues[propertyIndex][subPropertyIndex].values = value;
 
       return newPropertiesValues;
     });

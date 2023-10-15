@@ -11,8 +11,8 @@ export const ConfirmConfig = (): JSX.Element => {
         pck.packageProperties.map((property, propertyIndex) => {
           if (property.type === 'multiple') {
             form.setFieldValue(
-              `packages.${pckIndex}.packageProperties.${propertyIndex}.value`,
-              property.value.flatMap((v) => v)
+              `packages.${pckIndex}.packageProperties.${propertyIndex}.values`,
+              property.values.flatMap((v) => v)
             );
           }
         });

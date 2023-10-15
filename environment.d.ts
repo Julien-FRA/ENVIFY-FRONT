@@ -7,6 +7,7 @@ declare namespace NodeJS {
     readonly NEXT_PUBLIC_AUTH_API_URL: string;
     readonly NEXTAUTH_SECRET: string;
     readonly ICON_SCOUT_CLIENT_ID: string;
+    readonly NEXT_PUBLIC_ICON_SCOUT_CLIENT_ID: string;
     readonly ICON_SCOUT_SECRET: string;
   }
 }

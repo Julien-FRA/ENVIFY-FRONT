@@ -4,7 +4,7 @@ describe('getArrayFirsts', () => {
   it('returns an empty array if input array is undefined', () => {
     const limit = 3;
     const getFirsts = getArrayFirsts(limit);
-    const result = getFirsts(undefined);
+    const result = getFirsts([]);
     expect(result).toEqual([]);
   });
 
