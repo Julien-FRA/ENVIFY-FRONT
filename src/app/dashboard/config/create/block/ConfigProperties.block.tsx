@@ -62,7 +62,11 @@ export const ConfigProperties = () => {
             <Box>
               <Title order={3}>Configure {pck.name} :</Title>
               <BlockProperties
-                description={packagePropertiesData[pckIndex].description}
+                description={
+                  packagePropertiesData.find(
+                    (property) => property.packageVersionId === pck.versionId
+                  )?.description
+                }
                 packagePropeties={pck.packageProperties}
                 packageIndex={pckIndex}
               />
