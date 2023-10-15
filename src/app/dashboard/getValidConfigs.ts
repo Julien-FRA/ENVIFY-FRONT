@@ -36,6 +36,7 @@ export const getValidConfigs = async (configCount?: number) => {
   } else {
     validConfigs.push(...configs);
   }
+  validConfigs.reverse();
 
   if (!configCount)
     return {
