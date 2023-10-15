@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, Box, Title } from '@mantine/core';
+import { Text, Box, Title, Flex } from '@mantine/core';
 import { ConfigFileDto, ScriptDto } from '@/utils/types/script.type';
 import { CodeContainer } from '../Container/Code.container';
 import { useConfigFormContext } from '@/app/dashboard/config/create/configForm.context';
+import { ButtonCopy } from '../Button/Copy.Button';
 
 type BlockScriptProps = {
   scripts: ScriptDto[];
@@ -24,35 +25,48 @@ export const BlockScript = ({ scripts, configFiles }: BlockScriptProps) => {
       </Box>
       <CodeContainer>
         <>
-          <Text size="xl" c="gray.7">
-            Generated scripts for :{' '}
-            {form.values.packages.map((pck) => `${pck.name} / `)}
-          </Text>
+          <Flex justify={'space-between'} mb={20}>
+            <Text size="xl" c="gray.7">
+              Generated scripts for :{' '}
+              {form.values.packages.map((pck) => `${pck.name} / `)}
+            </Text>
+          </Flex>
+
           {scripts.map((script, index) => (
             <Box key={`${script.scriptLabel}-${index}`} my={20}>
               <Text size="sm" c="gray.6">
                 {script.scriptLabel}
               </Text>
-              <Text size="">{script.script}</Text>
+              <Flex justify="space-between">
+                <Text>{script.script}</Text>
+                <ButtonCopy value={script.script} />
+              </Flex>
             </Box>
           ))}
         </>
       </CodeContainer>
       <CodeContainer>
         <>
-          <Text size="xl" c="gray.7">
-            Generated config file :
-          </Text>
+          <Flex justify={'space-between'} mb={20}>
+            <Text size="xl" c="gray.7">
+              Generated config file :
+            </Text>
+          </Flex>
           {configFiles.map((configFile, index) => (
             <Box key={`${configFile.fileName}-${index}`} my={20}>
               <Text size="sm" c="gray.6">
                 {configFile.fileName}
               </Text>
-              {configFile.file.split('\n').map((str, index) => (
-                <Text size="sm" key={index} my={15}>
-                  {str}
-                </Text>
-              ))}
+              <Flex
+                justify="space-between"
+                style={{
+                  whiteSpace: 'pre-wrap',
+                  overflow: 'auto',
+                }}
+              >
+                <pre>{configFile.file}</pre>
+                <ButtonCopy value={configFile.file} />
+              </Flex>
             </Box>
           ))}
         </>
