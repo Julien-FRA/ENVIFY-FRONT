@@ -1,0 +1,12 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mantine-color-white);
+  border-color: var(--mantine-color-dark-4);
+  img {
+    display: block;
+    width: rem(24);
+    height: rem(24);
+  }
+}

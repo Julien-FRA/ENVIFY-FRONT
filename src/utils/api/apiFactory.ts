@@ -70,6 +70,30 @@ const apiFactory = (baseUrl: string, type: ServerType = 'server') => ({
       return responseErrorHandler(error);
     }
   },
+  delete: async <TOutput>(
+    path: string,
+    options: RequestInit = {}
+  ): Promise<TOutput> => {
+    try {
+      const session = await getAuthSession(type);
+      const response = await fetch(`${baseUrl}${path}`, {
+        ...options,
+        method: 'DELETE',
+        headers: {
+          ...options.headers,
+          'Content-Type': 'application/json',
+          'ENVIFY-API-Key': `${process.env.NEXT_PUBLIC_ENVIFY_API_KEY}`,
+          Authorization: `Bearer ${session?.jwtToken}`,
+        },
+      });
+
+      responseStatusHandler(response.status);
+
+      return response.text() as Promise<TOutput>;
+    } catch (error) {
+      return responseErrorHandler(error);
+    }
+  },
 });
 
 export const apiClient = apiFactory(

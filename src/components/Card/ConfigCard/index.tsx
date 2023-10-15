@@ -1,9 +1,9 @@
 import classes from './ConfigCard.module.css';
 import { getFormatDateRelative, getArrayFirsts } from '@/utils/helpers';
 import { Avatar, AvatarGroup, Box, Flex, Text } from '@mantine/core';
-import { BsChevronRight } from 'react-icons/bs';
 import type { Config, Package } from '@/utils/types/config.type';
-// import Link from 'next/link';
+import Link from 'next/link';
+import { DeleteConfigButton } from '@/components/Button/DeleteConfig.Button';
 
 const fetchPackageIcon = async (
   packageName: string
@@ -37,74 +37,79 @@ const fetchPackageIcons = async (
 
 export const ConfigCard = async ({
   config,
-} // type = 'user',
-: {
+  type = 'user',
+}: {
   config: Config;
-  // type?: string;
+  type?: string;
 }) => {
   const slicedPackages = getArrayFirsts<Package>(3)(config?.packages);
   const formattedCreatedAt = getFormatDateRelative(config?.created_at ?? '');
   const packageIcons = await fetchPackageIcons(config.packages);
 
   return (
-    // <Link
-    //   href={`/dashboard/${
-    //     type === 'suggested' ? 'suggested-config' : 'config'
-    //   }/${config?.id}`}
-    // >
-    <Box className={`${classes.configCard} h-100`} p="md">
-      <Flex justify="space-between">
-        <Text component="p">{config.name}</Text>
-        <BsChevronRight className={classes.icon} />
+    <Box className={classes.container}>
+      <Flex justify="flex-end" className={classes.delete}>
+        <DeleteConfigButton id={config.id} />
       </Flex>
-      <Box>
-        <AvatarGroup my="lg">
-          {slicedPackages
-            ?.slice(0, 3)
-            .map((pkg: Package) => (
-              <Avatar
-                key={pkg.name}
-                src={packageIcons[pkg.name] ?? null}
-                alt={pkg.name}
-                size={48}
-                className={classes.avatar}
-              />
-            ))}
-          {config?.packages?.length > 3 && (
-            <Avatar
-              size={48}
-              className={`${classes.avatar_others} ${classes.avatar}`}
-            >
-              +{config?.packages?.length - 3}
-            </Avatar>
-          )}
-        </AvatarGroup>
-      </Box>
-      <Flex justify="space-between">
-        <Box>
-          <Text size="xs" component="p">
-            OS {`- ${config.operatingSystemName}`}
-          </Text>
-          {slicedPackages?.length > 0 && (
-            <Box mt="xs">
-              {slicedPackages?.map((pkg: Package) => (
-                <Text size="xs" key={pkg.packageVersionId} component="p">
-                  {pkg.name} {pkg.versionNumber && `- ${pkg.versionNumber}`}
-                </Text>
-              ))}
+
+      <Link
+        href={`/dashboard/${
+          type === 'suggested' ? 'suggested-config' : 'config'
+        }/${config?.id}`}
+      >
+        <Box className={`${classes.configCard} h-100`} p="md">
+          <Flex justify="space-between">
+            <Text component="p">{config.name}</Text>
+          </Flex>
+          <Box>
+            <AvatarGroup my="lg">
+              {slicedPackages
+                ?.slice(0, 3)
+                .map((pkg: Package) => (
+                  <Avatar
+                    key={pkg.name}
+                    src={packageIcons[pkg.name] ?? null}
+                    alt={pkg.name}
+                    size={48}
+                    className={classes.avatar}
+                  />
+                ))}
+              {config?.packages?.length > 3 && (
+                <Avatar
+                  size={48}
+                  className={`${classes.avatar_others} ${classes.avatar}`}
+                >
+                  +{config?.packages?.length - 3}
+                </Avatar>
+              )}
+            </AvatarGroup>
+          </Box>
+          <Flex justify="space-between">
+            <Box>
+              <Text size="xs" component="p">
+                OS {`- ${config.operatingSystemName}`}
+              </Text>
+              {slicedPackages?.length > 0 && (
+                <Box mt="xs">
+                  {slicedPackages?.map((pkg: Package) => (
+                    <Text size="xs" key={pkg.packageVersionId} component="p">
+                      {pkg.name} {pkg.versionNumber && `- ${pkg.versionNumber}`}
+                    </Text>
+                  ))}
+                </Box>
+              )}
             </Box>
-          )}
+            <Box component="p" m={0}>
+              <Text size="xs" component="span" c="dark.3">
+                Created
+              </Text>
+              <Text size="xs" component="span">
+                {` ${formattedCreatedAt}`}
+              </Text>
+            </Box>
+          </Flex>
         </Box>
-        <Box component="p" m={0}>
-          <Text size="xs" component="span" c="dark.3">
-            Created
-          </Text>
-          <Text size="xs" component="span">
-            {` ${formattedCreatedAt}`}
-          </Text>
-        </Box>
-      </Flex>
+      </Link>
     </Box>
-    // </Link>
   );
 };

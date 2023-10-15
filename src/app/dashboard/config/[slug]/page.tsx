@@ -1,34 +1,51 @@
 // import { BlockScript } from '@/components/BlockScript';
-import type { Config } from '@/utils/types/config.type';
 import { Title } from '@mantine/core';
+import { getValidConfigs } from '../../getValidConfigs';
 import { apiServer } from '@/utils/api/apiFactory';
+import { z } from 'zod';
+import { SimpleBlockScript } from '@/components/BlockScript/SimpleBlockSccript';
+
+const scriptsSchema = z
+  .array(
+    z.object({
+      scriptLabel: z.string(),
+      script: z.string(),
+    })
+  )
+  .min(1);
 
 export default async function ReadConfig({
   params,
 }: {
   params: { slug: string };
 }) {
-  // TODO: fetch config by id when backend endpoint will be ready
-  const configs: Config[] = await apiServer.get(`/configs`);
-  const config = configs.find((config) => config.id.toString() === params.slug);
+  const userConfigs = await getValidConfigs();
+  const config = userConfigs.configs.find(
+    (config) => config.id.toString() === params.slug
+  );
+
+  const body = config?.packages.map((pkg) => {
+    return {
+      config: pkg.name,
+      os: config.operatingSystemName,
+      release: pkg.versionNumber,
+    };
+  });
+
+  const scripts = await apiServer.post(`/scriptGenerator/script/lines`, body);
+
+  const scriptsValidated = scriptsSchema.safeParse(scripts);
 
   return (
     <>
       <Title order={1} mb="xl">
         Config - {config?.name}
       </Title>
-      {/* todo fix config types data */}
-      {/* {config?.scripts && config?.scripts.length > 0 ? (
-        config?.scripts?.map((script) => (
-          <BlockScript
-            key={script.comment}
-            scripts={script.script}
-            comment={script.comment}
-          />
-        ))
+      {scriptsValidated.success ? (
+        <SimpleBlockScript scripts={scriptsValidated.data} />
       ) : (
         <p>No scripts found</p>
-      )} */}
+      )}
     </>
   );
 }
