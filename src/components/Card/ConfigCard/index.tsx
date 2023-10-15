@@ -43,7 +43,9 @@ export const ConfigCard = async ({
   type?: string;
 }) => {
   const slicedPackages = getArrayFirsts<Package>(3)(config?.packages);
-  const formattedCreatedAt = getFormatDateRelative(config?.created_at ?? '');
+  const formattedCreatedAt = config?.created_at
+    ? getFormatDateRelative(config?.created_at)
+    : null;
   const packageIcons = await fetchPackageIcons(config.packages);
 
   return (
@@ -100,12 +102,16 @@ export const ConfigCard = async ({
               )}
             </Box>
             <Box component="p" m={0}>
-              <Text size="xs" component="span" c="dark.3">
-                Created
-              </Text>
-              <Text size="xs" component="span">
-                {` ${formattedCreatedAt}`}
-              </Text>
+              {formattedCreatedAt && (
+                <>
+                  <Text size="xs" component="span" c="dark.3">
+                    Created
+                  </Text>
+                  <Text size="xs" component="span">
+                    ` ${formattedCreatedAt}`
+                  </Text>
+                </>
+              )}
             </Box>
           </Flex>
         </Box>
