@@ -1,6 +1,7 @@
 export const getArrayFirsts =
   <T>(limit: number) =>
-  (arr: T[] | undefined): T[] => {
+  (arr: T[]): T[] => {
+    if (!arr?.length) return [];
     return arr?.slice(0, limit) ?? [];
   };
 
@@ -26,3 +27,28 @@ export const getFormatDateRelative = (isoDateString: string): string => {
 
   return 'just now';
 };
+
+export const isJSONString = (str: string): boolean => {
+  try {
+    JSON.parse(str);
+  } catch (error) {
+    return false;
+  }
+  return true;
+};
+
+export const getErrorMessage = (error: unknown): string => {
+  let message: string;
+  if (error instanceof Error) {
+    message = error.message;
+  } else if (error && typeof error === 'object' && 'message' in error) {
+    message = String(error.message);
+  } else if (typeof error === 'string') {
+    message = error;
+  } else {
+    message = 'Something went wrong';
+  }
+  return message;
+};
+
+export const TOKEN_MAX_AGE = 30 * 24 * 60 * 60; // 30 days

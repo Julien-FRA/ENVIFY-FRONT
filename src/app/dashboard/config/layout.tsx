@@ -5,5 +5,5 @@ export default function ConfigLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Box pt={100}>{children}</Box>;
+  return <Box pt={30}>{children}</Box>;
 }

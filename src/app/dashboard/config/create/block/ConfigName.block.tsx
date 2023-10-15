@@ -7,11 +7,11 @@ import { useEffect } from 'react';
 
 export const ConfigNameBlock = (): JSX.Element => {
   const form = useConfigFormContext();
-  const operatingSystemId = form.values.operatingSystem.id;
+  const operatingSystemId = form.values.os.versionId;
 
   useEffect(() => {
-    // Si operatingSystemId change, mettre à jour operatingSystem.versionId à null
-    form.setFieldValue('operatingSystem.versionId', null);
+    // Si operatingSystemId change, mettre à jour operatingSystem.versionNumber à null
+    form.setFieldValue('os.versionNumber', null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [operatingSystemId]);
 
@@ -22,17 +22,21 @@ export const ConfigNameBlock = (): JSX.Element => {
         label="Config name"
         name="name"
         required
-        {...form.getInputProps('configName')}
+        {...form.getInputProps('name')}
+      />
+      <TextInput
+        placeholder="Enter a config description"
+        label="Config description"
+        name="name"
+        multiline
+        {...form.getInputProps('description')}
       />
       <SimpleGrid cols={2}>
-        <OperatingSystemSelect
-          required
-          {...form.getInputProps('operatingSystem.id')}
-        />
+        <OperatingSystemSelect required />
         <OperatingSystemVersionSelect
           operatingSystemId={operatingSystemId}
+          {...form.getInputProps('os.versionNumber')}
           required
-          {...form.getInputProps('operatingSystem.versionId')}
         />
       </SimpleGrid>
     </SimpleGrid>

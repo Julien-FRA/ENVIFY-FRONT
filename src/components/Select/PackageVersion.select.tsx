@@ -9,8 +9,8 @@ export const PackageVersionSelect = ({
   handleVersion,
 }: {
   versions: PackageVersionDto[];
-  selectedVersion: string | null;
-  handleVersion: (versionValue: string) => void;
+  selectedVersion?: number | null;
+  handleVersion: (versionValue: number | null, label?: string) => void;
 }) => {
   const parseVersionsOption = useMemo(
     () =>
@@ -21,14 +21,22 @@ export const PackageVersionSelect = ({
     [versions]
   );
 
+  const handleChange = (value: string | null) => {
+    const label = parseVersionsOption?.find(
+      (version) => version.value === value
+    )?.label;
+
+    handleVersion(Number(value), label);
+  };
+
   return (
     <Select
       placeholder="Select à version *"
       variant="unstyled"
       required
       data={parseVersionsOption}
-      value={selectedVersion}
-      onChange={handleVersion}
+      value={String(selectedVersion)}
+      onChange={handleChange}
     />
   );
 };

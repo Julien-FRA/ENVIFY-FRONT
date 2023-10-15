@@ -10,6 +10,7 @@ export type OperatingSystemVersionDto = {
 };
 
 export type OperatingSystemInput = {
-  id: number;
   versionId: number;
+  name: string;
+  versionNumber: string;
 };

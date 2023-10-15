@@ -1,7 +1,7 @@
 import { Features } from '../Features.container';
 import { Box, Grid, GridCol } from '@mantine/core';
 import classes from './Auth.module.css';
-import { EnvifyLogoButtno } from '@/components/Button/Logo.button';
+import { EnvifyLogoButton } from '@/components/Button/Logo.button';
 type AuthContainerProps = {
   children: JSX.Element;
 };
@@ -16,7 +16,7 @@ export const AuthContainer = (props: AuthContainerProps) => {
         classNames={{ inner: classes.inner }}
       >
         <GridCol className={classes.container} span={4} px={100} py={30}>
-          <EnvifyLogoButtno back />
+          <EnvifyLogoButton back />
           {props.children}
         </GridCol>
         <GridCol span={6}>

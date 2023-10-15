@@ -1,13 +1,11 @@
-'use client';
 import React from 'react';
 import { Flex } from '@mantine/core';
 import { Button } from '../../Button';
-import { useSession } from 'next-auth/react';
-import { EnvifyLogoButtno } from '@/components/Button/Logo.button';
+import { getAuthSession } from '@/utils/authOptions';
+import { EnvifyLogoButton } from '@/components/Button/Logo.button';
 
-export const Header = () => {
-  const { data: session } = useSession();
-
+export const Header = async () => {
+  const session = await getAuthSession();
   return (
     <Flex
       style={{
@@ -19,7 +17,7 @@ export const Header = () => {
       h={80}
       w="100%"
     >
-      <EnvifyLogoButtno />
+      <EnvifyLogoButton />
       <Flex>
         {session ? (
           <Button variant="outline" href="/dashboard">

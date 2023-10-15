@@ -13,7 +13,8 @@ export const StepperButtons = ({
 }: StepperButtonsProps): JSX.Element => {
   const form = useConfigFormContext();
 
-  const { activeStep, prevStep, nextStep } = useStepperContext();
+  const { activeStep, prevStep, nextStep, maxStep } = useStepperContext();
+  const confirmeStep = activeStep === maxStep;
 
   const isValidate = () => {
     if (!stepsValidation) return false;
@@ -32,13 +33,19 @@ export const StepperButtons = ({
   return (
     <Group justify="end" mt="xl" pb="xl">
       {activeStep > 0 ? (
-        <Button onClick={prevStep} variant="outline" type="submit">
-          Précédent
+        <Button onClick={prevStep} variant="outline">
+          Previous
         </Button>
       ) : null}
-      <Button onClick={nextStep} disabled={isValidate()} type="submit">
-        Confirmer
-      </Button>
+      {confirmeStep ? (
+        <Button key="FormSumbit" type="submit">
+          Confirm
+        </Button>
+      ) : (
+        <Button onClick={nextStep} disabled={isValidate()}>
+          Next
+        </Button>
+      )}
     </Group>
   );
 };

@@ -1,7 +1,7 @@
 import type { StoryObj, Meta } from '@storybook/react';
 import { Step, Stepper } from './Stepper';
 import { Container } from '@mantine/core';
-import { StepperFormProvider, StepperProvider } from './Stepper.provider';
+import { FormProvider, StepperProvider } from './Stepper.provider';
 import { StepperButtons } from './StepperButton';
 import { ConfigNameBlock } from '@/app/dashboard/config/create/block/ConfigName.block';
 import {
@@ -11,9 +11,9 @@ import {
 import { configCreateFormInput } from '@/app/dashboard/config/create/ConfigCreate.stepper';
 import { ConfigProperties } from '@/app/dashboard/config/create/block/ConfigProperties.block';
 
-const meta: Meta<typeof StepperFormProvider> = {
+const meta: Meta<typeof FormProvider> = {
   title: 'components/Forms/StepperForm',
-  component: StepperFormProvider,
+  component: FormProvider,
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -30,11 +30,12 @@ const meta: Meta<typeof StepperFormProvider> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof StepperFormProvider>;
+type Story = StoryObj<typeof FormProvider>;
 
 export const Default: Story = {
   render: () => (
-    <StepperFormProvider
+    <FormProvider
+      mutation={() => {}}
       formInput={configCreateFormInput}
       FormProvider={ConfigFormProvider}
       useForm={useConfigForm}
@@ -62,6 +63,6 @@ export const Default: Story = {
           ]}
         />
       </StepperProvider>
-    </StepperFormProvider>
+    </FormProvider>
   ),
 };

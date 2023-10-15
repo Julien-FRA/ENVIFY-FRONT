@@ -20,23 +20,16 @@ export type PackagePropertiesDto = {
   description?: string | null;
 };
 
+export type PackagePropertiesPackagesId = {
+  packageVersionIds: number[];
+};
+
 export type PackageInput = {
-  id: number;
-  name: string;
-  packageVersions: PackageVersionsInput;
-  packageProperties: PropertiesInput[];
-};
-
-type PackageVersionsInput = {
-  id: number;
   packageId: number;
+  name: string;
+  versionId: number;
   versionNumber: string;
-};
-
-export type PackagePropertiesInput = {
-  packageName: string;
-  packageVersionId: number;
-  properties: PropertiesInput[];
+  packageProperties: PropertiesInput[];
 };
 
 export type PropertiesInput = PropertiesMultipleInput | PropertiesSingleInput;

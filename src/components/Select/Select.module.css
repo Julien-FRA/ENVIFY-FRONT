@@ -17,6 +17,13 @@
     background-color: var(--mantine-color-dark-4);
     color: var(--mantine-color-white);
   }
+
+  &[data-variant='code'] {
+    background-color: transparent;
+    padding: rem(12px);
+    border-radius: 0.2rem;
+    border-width: 0.5px;
+  }
 }
 
 .dropdown {

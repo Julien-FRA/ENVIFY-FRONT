@@ -9,15 +9,27 @@ import { PackageDto } from '@/utils/types/package.type';
 import { ConfigError } from './ConfigError.block';
 import { Loader } from '@/components/Loader';
 
+export type PackageVersion = {
+  versionId: number | null;
+  versionNumber?: string;
+};
+
+export type HandleVersion = (
+  packageId: number,
+  name: string,
+  packageVersion: PackageVersion | null,
+  checked: boolean
+) => void;
+
 export const SelectPackage = () => {
   const { isLoading, data: packages } = useQuery('packages', getPackages);
 
   const form = useConfigFormContext();
 
-  const handleChange = useCallback(
-    (packageName: string, packageVersion: string | null, checked: boolean) => {
+  const handleChange: HandleVersion = useCallback(
+    (packageId, name, packageVersion, checked) => {
       const index = form.values.packages.findIndex(
-        (val) => val.name === packageName
+        (val) => val.packageId === packageId
       );
 
       if (!checked || !packageVersion)
@@ -25,15 +37,22 @@ export const SelectPackage = () => {
 
       if (index === -1)
         return form.insertListItem('packages', {
-          name: packageName,
-          packageVersions: {
-            id: Number(packageVersion),
-          },
+          name,
+          packageId,
+          versionId: Number(packageVersion.versionId),
+          versionNumber: packageVersion.versionNumber,
+          packageProperties: [],
         });
-      return form.setFieldValue(
-        `packages.${index}.packageVersions.id`,
-        packageVersion
+
+      form.setFieldValue(
+        `packages.${index}.versionId`,
+        Number(packageVersion.versionId)
       );
+      form.setFieldValue(
+        `packages.${index}.versionNumber`,
+        packageVersion.versionNumber
+      );
+      return;
     },
     [form]
   );
@@ -47,11 +66,7 @@ export const SelectPackage = () => {
 
 type GridSelectPackageProps = {
   packages: PackageDto[];
-  handleChange: (
-    packageName: string,
-    packageVersion: string | null,
-    checked: boolean
-  ) => void;
+  handleChange: HandleVersion;
 };
 
 const GridSelectPackage = ({

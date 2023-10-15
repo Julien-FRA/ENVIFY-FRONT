@@ -30,7 +30,7 @@ export const Button = ({
 };
 
 export const ButtonIcon = ({ children, ...props }: ButtonProps) => (
-  <Button {...props} variant="subtle" href="/" h={48} p={12}>
+  <Button {...props} variant="subtle" h={48} p={12}>
     {children}
   </Button>
 );

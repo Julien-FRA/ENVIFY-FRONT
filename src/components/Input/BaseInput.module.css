@@ -33,4 +33,11 @@
       background-color: var(--mantine-color-violet-4);
     }
   }
+
+  &[data-variant='unstyled'] {
+    background-color: transparent;
+    padding: rem(12px);
+    border-radius: 0.2rem;
+    border-width: 0.5px;
+  }
 }

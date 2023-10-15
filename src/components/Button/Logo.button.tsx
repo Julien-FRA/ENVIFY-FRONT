@@ -8,7 +8,7 @@ type Props = {
   back?: boolean;
 };
 
-export const EnvifyLogoButtno = ({ back }: Props) => (
+export const EnvifyLogoButton = ({ back }: Props) => (
   <ButtonIcon leftSection={back && <BsArrowLeft />}>
     <EnvifyLogo />
     <Text size="lg" pt={3} pl={3}>

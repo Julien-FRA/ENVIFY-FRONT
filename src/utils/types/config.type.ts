@@ -1,11 +1,27 @@
 import { OperatingSystemInput } from './operatingSystem.type';
-import { PackageInput, PackagePropertiesInput } from './package.type';
+import {
+  ConfigArraySchema,
+  ConfigSchema,
+  PackageSchema,
+} from '../schemas/config.schema';
+import { PackageInput } from './package.type';
+import { z } from 'zod';
 
-export type Package = {
-  name: string;
-  version: string[];
-  alias: string;
-  logo?: string;
+export type Configs = z.infer<typeof ConfigArraySchema>;
+export type Config = z.infer<typeof ConfigSchema>;
+
+export type Package = z.infer<typeof PackageSchema>;
+
+export type HiddenConfig = {
+  config: Config;
+  error: string;
+};
+
+export type ErrorDetails = {
+  hasSomeUnusableConfigs: boolean;
+  message: string;
+  messageDetails: string;
+  hiddenConfigs: HiddenConfig[];
 };
 
 export type Script = {
@@ -13,19 +29,9 @@ export type Script = {
   script: string;
 };
 
-export type Config = {
-  id: number;
-  name: string;
-  created_at: string;
-  packages: Package[];
-  scripts?: Script[];
-};
-
-export type Configs = Config[];
-
 export type ConfigInput = {
-  configName: string;
-  operatingSystem: OperatingSystemInput;
+  name: string;
+  description?: string;
+  os: OperatingSystemInput;
   packages: PackageInput[];
-  packagesProperties: PackagePropertiesInput[];
 };

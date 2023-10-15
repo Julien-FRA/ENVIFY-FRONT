@@ -22,6 +22,7 @@ export const Stepper = ({
       size="md"
       active={activeStep}
       onStepClick={setActiveStep}
+      allowNextStepsSelect={false}
       {...props}
     >
       {children}

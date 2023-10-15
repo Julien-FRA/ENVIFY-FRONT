@@ -4,6 +4,10 @@
   border-radius: var(--mantine-radius-sm);
   position: relative;
 
+  &:hover {
+    background-color: var(--mantine-color-dark-4);
+  }
+
   .icon {
     width: rem(16);
     height: auto;

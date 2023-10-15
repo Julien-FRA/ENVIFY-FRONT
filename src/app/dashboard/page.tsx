@@ -1,40 +1,44 @@
 import { Button } from '@/components/Button';
 import { ConfigCard } from '@/components/Card/ConfigCard';
-import { Box, Grid, GridCol } from '@mantine/core';
+import { Box, Flex, Grid, GridCol } from '@mantine/core';
 import { BsArrowRight } from 'react-icons/bs';
-import { apiClient } from '@/utils/api/apiFactory';
-import { getArrayFirsts } from '@/utils/helpers';
-import type { Config } from '@/utils/types/config.type';
+import { getValidConfigs } from './getValidConfigs';
+import { WarningConfig } from './config/Warning.config';
 
 export default async function Dashboard() {
-  const userConfigs: Config[] = await apiClient.get('/configs');
-  const slicedConfigs = getArrayFirsts<Config>(3)(userConfigs);
+  const { configs, errors } = await getValidConfigs(3);
 
   return (
     <>
       <Button href="/dashboard/config/create">Create new config</Button>
       <Box mt={36}>
-        {userConfigs?.length > 0 ? (
+        {configs?.length > 0 ? (
           <>
-            <Button
-              p={0}
-              variant="arrow"
-              href="/dashboard/config/all"
-              rightSection={<BsArrowRight />}
-            >
-              My configurations
-            </Button>
+            <Flex align="center" justify="space-between">
+              <Button
+                p={0}
+                variant="arrow"
+                href="/dashboard/config/all"
+                rightSection={<BsArrowRight />}
+              >
+                Your configurations
+              </Button>
+              {errors?.hasSomeUnusableConfigs && (
+                <WarningConfig errors={errors} />
+              )}
+            </Flex>
 
-            <Grid>
-              {slicedConfigs?.map((config, i) => (
-                <GridCol span={4} key={i}>
+            <Grid mt={24}>
+              {configs.map((config) => (
+                <GridCol key={config.id} span={4}>
+                  {/* @ts-expect-error Async Server Components */}
                   <ConfigCard config={config} />
                 </GridCol>
               ))}
             </Grid>
           </>
         ) : (
-          <p>You have no configurations yet.</p>
+          <p>You have no configs yet.</p>
         )}
       </Box>
     </>

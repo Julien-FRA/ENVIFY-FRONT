@@ -10,8 +10,8 @@ type OperatingSystemVersionProps = {
 const getVersionsByIdOptions = (operatingSystemId: number) =>
   getOperatingSystemVersions(operatingSystemId).then((versions) =>
     versions.map((version) => ({
-      value: `${version.id}`,
-      label: `${version.versionNumber}`,
+      value: version.versionNumber,
+      label: version.versionNumber,
     }))
   );
 

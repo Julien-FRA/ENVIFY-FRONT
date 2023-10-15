@@ -1,40 +1,62 @@
 import React from 'react';
-import classes from './BlockScript.module.css';
-import { Code, Text, Box } from '@mantine/core';
-import { Source_Code_Pro } from 'next/font/google';
-import { ButtonCopy } from '../Button/Copy.Button';
-
-const sourceCodePro = Source_Code_Pro({ subsets: ['latin'] });
+import { Text, Box, Title } from '@mantine/core';
+import { ConfigFileDto, ScriptDto } from '@/utils/types/script.type';
+import { CodeContainer } from '../Container/Code.container';
+import { useConfigFormContext } from '@/app/dashboard/config/create/configForm.context';
 
 type BlockScriptProps = {
-  comment?: string;
-  code: string;
+  scripts: ScriptDto[];
+  configFiles: ConfigFileDto[];
 };
 
-export const BlockScript = ({ comment, code }: BlockScriptProps) => {
+export const BlockScript = ({ scripts, configFiles }: BlockScriptProps) => {
+  const form = useConfigFormContext();
+
   return (
-    <Box
-      className={`${classes.blockScriptContainer} ${sourceCodePro.className}`}
-      p="md"
-      mb="md"
-    >
-      <Text size="md" component="p" pr="xl">
-        {comment}
-      </Text>
-      <Code
-        classNames={{
-          root: classes.blockScriptCode,
-        }}
-        fz="md"
-        c="white"
-        p={0}
-        style={{ ...sourceCodePro.style }}
-      >
-        {code}
-      </Code>
-      <Box className={classes.copy} p="md">
-        <ButtonCopy value={code} />
+    <Box>
+      <Box mb="md">
+        <Title c="violet.4" order={1}>
+          {form.values.name}
+        </Title>
+        <Title order={6} c="gray.5" mb="lg">
+          {form.values.description}
+        </Title>
       </Box>
+      <CodeContainer>
+        <>
+          <Text size="xl" c="gray.7">
+            Generated scripts for :{' '}
+            {form.values.packages.map((pck) => `${pck.name} / `)}
+          </Text>
+          {scripts.map((script, index) => (
+            <Box key={`${script.scriptLabel}-${index}`} my={20}>
+              <Text size="sm" c="gray.6">
+                {script.scriptLabel}
+              </Text>
+              <Text size="">{script.script}</Text>
+            </Box>
+          ))}
+        </>
+      </CodeContainer>
+      <CodeContainer>
+        <>
+          <Text size="xl" c="gray.7">
+            Generated config file :
+          </Text>
+          {configFiles.map((configFile, index) => (
+            <Box key={`${configFile.fileName}-${index}`} my={20}>
+              <Text size="sm" c="gray.6">
+                {configFile.fileName}
+              </Text>
+              {configFile.file.split('\n').map((str, index) => (
+                <Text size="sm" key={index} my={15}>
+                  {str}
+                </Text>
+              ))}
+            </Box>
+          ))}
+        </>
+      </CodeContainer>
     </Box>
   );
 };

@@ -16,6 +16,7 @@ import { FormProviderProps } from '@mantine/form/lib/FormProvider/FormProvider';
 
 type StepperContextData = {
   activeStep: number;
+  maxStep: number;
   setActiveStep: React.Dispatch<React.SetStateAction<number>>;
   nextStep: () => void;
   prevStep: () => void;
@@ -23,20 +24,20 @@ type StepperContextData = {
 
 const StepperContext = createContext<StepperContextData | undefined>(undefined);
 
-export const StepperProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const StepperProvider = ({ children }: { children: JSX.Element[] }) => {
   const [activeStep, setActiveStep] = useState(0);
+  const maxStep = children[0].props.children.length - 1;
 
   const nextStep = useCallback(
-    () => setActiveStep((prevStep) => prevStep + 1),
-    []
+    () =>
+      setActiveStep((prevStep) =>
+        prevStep < maxStep ? prevStep + 1 : prevStep
+      ),
+    [maxStep]
   );
 
   const prevStep = useCallback(
-    () => setActiveStep((prevStep) => prevStep - 1),
+    () => setActiveStep((prevStep) => (prevStep > 0 ? prevStep - 1 : prevStep)),
     []
   );
 
@@ -46,8 +47,9 @@ export const StepperProvider = ({
       setActiveStep,
       nextStep,
       prevStep,
+      maxStep,
     }),
-    [activeStep, setActiveStep, nextStep, prevStep]
+    [activeStep, setActiveStep, nextStep, prevStep, maxStep]
   );
 
   return (
@@ -65,23 +67,24 @@ export const useStepperContext = () => {
   return context;
 };
 
-type StepperFromProps<TValues> = {
+type FromProps<TValues> = {
   FormProvider: FC<
     FormProviderProps<UseFormReturnType<TValues, (values: TValues) => TValues>>
   >;
   useForm: UseForm<TValues, (values: TValues) => TValues>;
   formInput: UseFormInput<TValues>;
+  mutation: (data: TValues) => void;
   children: React.ReactNode;
 };
 
-export const StepperFormProvider = <TValues,>(
-  props: StepperFromProps<TValues>
-) => {
+export const FormProvider = <TValues,>(props: FromProps<TValues>) => {
   const form = props.useForm(props.formInput);
+
+  const mutate = (values: TValues) => props.mutation(values);
 
   return (
     <props.FormProvider form={form}>
-      <form onSubmit={form.onSubmit(() => {})}>{props.children}</form>
+      <form onSubmit={form.onSubmit(mutate)}>{props.children}</form>
     </props.FormProvider>
   );
 };
