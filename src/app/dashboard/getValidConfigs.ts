@@ -36,15 +36,18 @@ export const getValidConfigs = async (configCount?: number) => {
   } else {
     validConfigs.push(...configs);
   }
-  validConfigs.reverse();
+
+  const toReverse = (arr: Configs) => [...arr].reverse();
 
   if (!configCount)
     return {
-      configs: validConfigs,
+      configs: toReverse(validConfigs),
       errors: errorDetails,
     };
 
-  const slicedValidConfigs = getArrayFirsts<Config>(configCount)(validConfigs);
+  const slicedValidConfigs = getArrayFirsts<Config>(configCount)(
+    toReverse(validConfigs)
+  );
 
   return { configs: slicedValidConfigs, errors: errorDetails };
 };
