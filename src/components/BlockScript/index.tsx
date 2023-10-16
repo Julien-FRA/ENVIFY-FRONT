@@ -54,32 +54,38 @@ export const BlockScript = ({ scripts, configFiles }: BlockScriptProps) => {
           ))}
         </>
       </CodeContainer>
-      <CodeContainer>
-        <>
-          <Flex justify={'space-between'} mb={20}>
-            <Text size="xl" c="gray.7">
-              Generated config file :
-            </Text>
-          </Flex>
-          {configFiles.map((configFile, index) => (
-            <Box key={`${configFile.fileName}-${index}`} my={20}>
-              <Text size="sm" c="gray.6">
-                {configFile.fileName}
+      {configFiles.length > 0 ? (
+        <CodeContainer>
+          <>
+            <Flex justify={'space-between'} mb={20}>
+              <Text size="xl" c="gray.7">
+                Generated config file :
               </Text>
-              <Flex
-                justify="space-between"
-                style={{
-                  whiteSpace: 'pre-wrap',
-                  overflow: 'auto',
-                }}
-              >
-                <pre>{configFile.file}</pre>
-                <ButtonCopy value={configFile.file} />
-              </Flex>
-            </Box>
-          ))}
-        </>
-      </CodeContainer>
+            </Flex>
+            {configFiles.map((configFile, index) => (
+              <Box key={`${configFile.fileName}-${index}`} my={20}>
+                <Text size="sm" c="gray.6">
+                  {configFile.fileName}
+                </Text>
+                <Flex
+                  justify="space-between"
+                  style={{
+                    whiteSpace: 'pre-wrap',
+                    overflow: 'auto',
+                  }}
+                >
+                  <pre>{configFile.file}</pre>
+                  <ButtonCopy value={configFile.file} />
+                </Flex>
+              </Box>
+            ))}
+          </>
+        </CodeContainer>
+      ) : (
+        <CodeContainer>
+          <Box>There are no additional configurations files</Box>
+        </CodeContainer>
+      )}
     </Box>
   );
 };

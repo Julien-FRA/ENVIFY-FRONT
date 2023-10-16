@@ -81,8 +81,5 @@ export const ConfigProperties = () => {
 };
 
 const EmptyBlockProperties = ({ name }: { name: string }) => (
-  <Box>
-    Vous n'avez pas de configurations supplémentaires pour {name}. Veuillez
-    continuer.
-  </Box>
+  <Box>There are no additional configurations for {name}. Please continue.</Box>
 );
