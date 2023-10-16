@@ -22,6 +22,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const reloadIfPathMatches = () => {
+    if (window.location.pathname === href) return window.location.reload();
     if (reload) window.location.reload();
   };
 

@@ -29,12 +29,8 @@ export default function Home() {
             </Button>
           </Box>
           <Box>
-            <Button
-              variant="arrow"
-              rightSection={<BsArrowRight />}
-              href="/community"
-            >
-              See community configuration
+            <Button variant="arrow" rightSection={<BsArrowRight />}>
+              See community configuration (in progress...)
             </Button>
           </Box>
         </Flex>

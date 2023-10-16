@@ -20,6 +20,9 @@ export const Sidebar = () => {
       callbackUrl: '/',
     });
 
+  const reloadIfPathMatches = (href: string) =>
+    window.location.pathname === href && window.location.reload();
+
   return (
     <AppShellNavbar className={classes.navbar} bg="dark.6" withBorder>
       <Flex direction="column">
@@ -30,15 +33,15 @@ export const Sidebar = () => {
           Configurations
         </Text>
         {links.map((link) => (
-          <Text
+          <Link
             key={link.name}
-            component={Link}
-            p="xs"
+            onClick={() => reloadIfPathMatches(link.href)}
             href={link.href}
-            className={classes.link}
           >
-            {link.name}
-          </Text>
+            <Text p="xs" className={classes.link}>
+              {link.name}
+            </Text>
+          </Link>
         ))}
       </Flex>
       <Button variant="outline" onClick={getBack}>
