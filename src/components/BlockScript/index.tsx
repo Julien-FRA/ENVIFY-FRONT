@@ -5,6 +5,7 @@ import { CodeContainer } from '../Container/Code.container';
 import { useConfigFormContext } from '@/app/dashboard/config/create/configForm.context';
 import { ButtonCopy } from '../Button/Copy.Button';
 import { Button } from '../Button';
+import { DownloadButton } from '../Button/Download.Button';
 
 type BlockScriptProps = {
   scripts: ScriptDto[];
@@ -37,6 +38,7 @@ export const BlockScript = ({ scripts, configFiles }: BlockScriptProps) => {
               Generated scripts for :{' '}
               {form.values.packages.map((pck) => `${pck.name} / `)}
             </Text>
+            <DownloadButton name={form.values.name} scripts={scripts} />
           </Flex>
 
           {scripts.map((script, index) => (
