@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const EnvifyLogoButton = ({ back }: Props) => (
-  <ButtonIcon leftSection={back && <BsArrowLeft />}>
+  <ButtonIcon leftSection={back && <BsArrowLeft />} href="/">
     <EnvifyLogo />
     <Text size="lg" pt={3} pl={3}>
       Envify
