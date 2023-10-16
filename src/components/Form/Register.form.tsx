@@ -25,7 +25,6 @@ export const RegisterForm = () => {
       firstName: '',
       lastName: '',
       email: '',
-      company: '',
       password: '',
       confirmPassword: '',
     },
@@ -57,15 +56,14 @@ export const RegisterForm = () => {
       username: values.username,
       lastName: values.lastName,
       firstName: values.firstName,
-      company: values.company,
       password: values.password,
     });
 
     if (!res.id) return;
 
     signIn('credentials', {
-      email: res.email,
-      password: res.password,
+      email: values.email,
+      password: values.password,
       callbackUrl: '/dashboard',
     });
   };
