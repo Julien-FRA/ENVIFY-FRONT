@@ -1,18 +1,15 @@
 import { ConfigCard } from '@/components/Card/ConfigCard';
-import { Flex, Grid, GridCol, Title } from '@mantine/core';
+import { Grid, GridCol, Title } from '@mantine/core';
 import { getValidConfigs } from '../../getValidConfigs';
-import { WarningConfig } from '../Warning.config';
 export default async function ConfigsList() {
-  const { configs, errors } = await getValidConfigs();
+  const { configs } = await getValidConfigs();
 
   return (
     <>
       <Title order={1} mb="xl">
         Configurations
       </Title>
-      <Flex justify="flex-end">
-        <WarningConfig errors={errors} />
-      </Flex>
+
       {configs?.length > 0 ? (
         <Grid>
           {configs?.map((config) => (
