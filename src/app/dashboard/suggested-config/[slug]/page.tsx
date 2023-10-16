@@ -30,9 +30,7 @@ export default async function ReadConfig({
         Config
       </Title>
       {scripts?.length ? (
-        scripts?.map((script) => (
-          <SimpleBlockScript key={script.script} scripts={scripts} />
-        ))
+        <SimpleBlockScript scripts={scripts} />
       ) : (
         <p>No scripts found</p>
       )}
