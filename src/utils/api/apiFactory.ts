@@ -1,5 +1,7 @@
-import { getAuthSession } from '../authOptions';
+import { NextAuthOptions, getServerSession } from 'next-auth';
 import { getErrorMessage, isJSONString } from '../helpers';
+import { getSession } from 'next-auth/react';
+import { authOptions } from '../authOptions';
 
 const responseStatusHandler = (status: number) => {
   if (status === 401) {
@@ -11,22 +13,34 @@ const responseErrorHandler = (error: unknown) => {
   return Promise.reject(error);
 };
 
-type ServerType = 'client' | 'server';
+type ServerType =
+  | typeof getServerSession<NextAuthOptions>
+  | typeof getSession
+  | null;
 
-const apiFactory = (baseUrl: string, type: ServerType = 'server') => ({
+const checkSessionType = async (serverType: ServerType) => {
+  return serverType
+    ? await serverType(
+        typeof serverType === typeof getSession ? authOptions : undefined
+      )
+    : null;
+};
+
+const apiFactory = (baseUrl: string, serverType: ServerType) => ({
   get: async <TOutput>(
     path: string,
     options: RequestInit = {}
   ): Promise<TOutput> => {
     try {
-      const session = await getAuthSession(type);
+      const session = await checkSessionType(serverType);
+
       const response = await fetch(`${baseUrl}${path}`, {
         ...options,
         headers: {
           ...options.headers,
           'Content-Type': 'application/json',
           'ENVIFY-API-Key': `${process.env.NEXT_PUBLIC_ENVIFY_API_KEY}`,
-          Authorization: `Bearer ${session?.jwtToken}`,
+          ...(session ? { Authorization: `Bearer ${session.jwtToken}` } : {}),
         },
       });
 
@@ -50,7 +64,8 @@ const apiFactory = (baseUrl: string, type: ServerType = 'server') => ({
     options: RequestInit = {}
   ): Promise<TOutput> => {
     try {
-      const session = path === '/login' ? null : await getAuthSession(type);
+      const session = await checkSessionType(serverType);
+
       const response = await fetch(`${baseUrl}${path}`, {
         ...options,
         method: 'POST',
@@ -59,7 +74,7 @@ const apiFactory = (baseUrl: string, type: ServerType = 'server') => ({
           ...options.headers,
           'Content-Type': 'application/json',
           'ENVIFY-API-Key': `${process.env.NEXT_PUBLIC_ENVIFY_API_KEY}`,
-          Authorization: session ? `Bearer ${session.jwtToken}` : '',
+          ...(session ? { Authorization: `Bearer ${session.jwtToken}` } : {}),
         },
       });
 
@@ -75,7 +90,8 @@ const apiFactory = (baseUrl: string, type: ServerType = 'server') => ({
     options: RequestInit = {}
   ): Promise<TOutput> => {
     try {
-      const session = await getAuthSession(type);
+      const session = await checkSessionType(serverType);
+
       const response = await fetch(`${baseUrl}${path}`, {
         ...options,
         method: 'DELETE',
@@ -98,10 +114,14 @@ const apiFactory = (baseUrl: string, type: ServerType = 'server') => ({
 
 export const apiClient = apiFactory(
   `${process.env.NEXT_PUBLIC_API_URL}`,
-  'client'
+  getSession
 );
-export const apiServer = apiFactory(`${process.env.NEXT_PUBLIC_API_URL}`);
+export const apiServer = apiFactory(
+  `${process.env.NEXT_PUBLIC_API_URL}`,
+  getServerSession
+);
 
 export const apiAuthClient = apiFactory(
-  `${process.env.NEXT_PUBLIC_AUTH_API_URL}`
+  `${process.env.NEXT_PUBLIC_AUTH_API_URL}`,
+  null
 );
