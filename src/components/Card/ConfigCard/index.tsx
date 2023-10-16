@@ -8,6 +8,7 @@ import { DeleteConfigButton } from '@/components/Button/DeleteConfig.Button';
 const fetchPackageIcon = async (
   packageName: string
 ): Promise<string | null> => {
+  if (!packageName) return null;
   const res = await fetch(
     `https://api.iconscout.com/v3/search?query=${packageName}&product_type=item&asset=icon&price=free&per_page=1&page=1&formats%5B%5D=svg&sort=relevant`,
     {
@@ -17,7 +18,7 @@ const fetchPackageIcon = async (
     }
   );
   const data = await res.json();
-  const icon = data?.response?.items?.data?.[0].urls?.png_64;
+  const icon = data?.response?.items?.data?.[0]?.urls?.png_64 ?? null;
   return icon;
 };
 
@@ -70,7 +71,7 @@ export const ConfigCard = async ({
                 .map((pkg: Package) => (
                   <Avatar
                     key={pkg.name}
-                    src={packageIcons[pkg.name] ?? null}
+                    src={packageIcons[pkg.name] ?? '/package.svg'}
                     alt={pkg.name}
                     size={48}
                     className={classes.avatar}

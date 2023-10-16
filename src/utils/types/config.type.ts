@@ -25,7 +25,7 @@ export type ErrorDetails = {
 };
 
 export type Script = {
-  comment: string;
+  scriptLabel: string;
   script: string;
 };
 
