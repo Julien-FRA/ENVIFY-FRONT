@@ -1,3 +1,4 @@
+'use client';
 import {
   Button as MantineButton,
   ButtonProps as MantineButtonProps,
@@ -9,6 +10,7 @@ type ButtonProps = MantineButtonProps & {
   variant?: MantineButtonProps['variant'] | 'arrow';
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  reload?: boolean;
 };
 
 export const Button = ({
@@ -16,10 +18,21 @@ export const Button = ({
   variant = 'filled',
   children,
   type,
+  reload,
   ...props
 }: ButtonProps) => {
+  const reloadIfPathMatches = () => {
+    if (reload) window.location.reload();
+  };
+
   return href ? (
-    <MantineButton component={Link} href={href} variant={variant} {...props}>
+    <MantineButton
+      component={Link}
+      href={href}
+      onClick={reloadIfPathMatches}
+      variant={variant}
+      {...props}
+    >
       {children}
     </MantineButton>
   ) : (

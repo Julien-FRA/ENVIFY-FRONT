@@ -4,6 +4,7 @@ import { ConfigFileDto, ScriptDto } from '@/utils/types/script.type';
 import { CodeContainer } from '../Container/Code.container';
 import { useConfigFormContext } from '@/app/dashboard/config/create/configForm.context';
 import { ButtonCopy } from '../Button/Copy.Button';
+import { Button } from '../Button';
 
 type BlockScriptProps = {
   scripts: ScriptDto[];
@@ -15,6 +16,12 @@ export const BlockScript = ({ scripts, configFiles }: BlockScriptProps) => {
 
   return (
     <Box>
+      <Flex gap="md" justify="end">
+        <Button href="dashboard/config/all">My configurations</Button>
+        <Button href="dashboard/config/create" reload variant="outline">
+          Create another config
+        </Button>
+      </Flex>
       <Box mb="md">
         <Title c="violet.4" order={1}>
           {form.values.name}
