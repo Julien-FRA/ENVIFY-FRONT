@@ -3,10 +3,9 @@ import { ConfigCard } from '@/components/Card/ConfigCard';
 import { Box, Flex, Grid, GridCol } from '@mantine/core';
 import { BsArrowRight } from 'react-icons/bs';
 import { getValidConfigs } from './getValidConfigs';
-import { WarningConfig } from './config/Warning.config';
 
 export default async function Dashboard() {
-  const { configs, errors } = await getValidConfigs(3);
+  const { configs } = await getValidConfigs(3);
 
   return (
     <>
@@ -23,9 +22,6 @@ export default async function Dashboard() {
               >
                 Your configurations
               </Button>
-              {errors?.hasSomeUnusableConfigs && (
-                <WarningConfig errors={errors} />
-              )}
             </Flex>
 
             <Grid mt={24}>
