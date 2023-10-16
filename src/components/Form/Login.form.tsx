@@ -15,8 +15,8 @@ import { Button } from '../Button';
 export const LoginForm = () => {
   const form = useForm<UserLogType>({
     initialValues: {
-      email: 'envifyadmin@gmail.com',
-      password: 'test1',
+      email: '',
+      password: '',
     },
 
     validate: (values) => ({
@@ -67,7 +67,7 @@ export const LoginForm = () => {
           You dont have an account ?
         </Text>
         <Button href="/register" variant="arrow" px={2} miw="4.25rem">
-          Sing up
+          Sign up
         </Button>
       </Flex>
     </Box>
