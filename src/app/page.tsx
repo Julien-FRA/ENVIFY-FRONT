@@ -3,7 +3,6 @@ import { Header } from '@/components/Nav/Header';
 import { DetailsBlock } from '@/components/Block/Details';
 import { StepBlock } from '@/components/Block/Steps';
 import { Box, Container, Flex, SimpleGrid, Text, Title } from '@mantine/core';
-import { BsArrowRight } from 'react-icons/bs';
 
 export default function Home() {
   return (

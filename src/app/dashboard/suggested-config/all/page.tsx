@@ -5,8 +5,6 @@ import { apiServer } from '@/utils/api/apiFactory';
 export default async function ConfigsList() {
   const suggestedConfigs: Config[] = await apiServer.get('/configs/suggested');
 
-  console.log(suggestedConfigs);
-
   return (
     <>
       <Title order={1} mb="xl">
